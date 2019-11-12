@@ -1,5 +1,5 @@
 import test from 'ava';
-import pathToName from './src/path-to-name';
+import pathToName from '../src/path-to-name';
 
 
 test('pathToName', (t) => {

@@ -2,6 +2,7 @@ import path from 'path';
 import reduce from '@arr/reduce';
 import listFiles from './list-files';
 import pathToName from './path-to-name';
+import readFile from './read-file';
 
 
 const readDir = async (

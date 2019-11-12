@@ -2,7 +2,7 @@ import fs from 'fs-extra';
 
 
 const readFile = async (fp, parser) => {
-  const str = await fs.readFile(filepath, 'utf8');
+  const str = await fs.readFile(fp, 'utf8');
 
   return (
     !parser

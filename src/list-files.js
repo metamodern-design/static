@@ -4,7 +4,7 @@ import globby from 'globby';
 const listFiles = async (context, extensions = []) => {
   const globs = (
     extensions.length > 0
-      ? [].concact(extensions).map((ext) => `*.${ext}`)
+      ? [].concat(extensions).map((ext) => `*.${ext}`)
       : ['*']
   );
 

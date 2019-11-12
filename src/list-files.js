@@ -7,8 +7,11 @@ const listFiles = async (context, extensions = []) => {
       ? [].concat(extensions).map((ext) => `*.${ext}`)
       : ['*']
   );
-
-  return globby(globs, { cwd: context });
+  const results = await globby(globs, { cwd: context });
+  
+  return results.map(
+    (filename) => path.resolve(context, `./${filename}`),
+  );
 };
 
 

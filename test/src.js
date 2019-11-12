@@ -46,7 +46,7 @@ test('pathToName', (t) => {
 });
 
 
-test('readFile', (t) => {
+test('readFile', async (t) => {
   t.is(
     await readFile(path.resolve(contentPath, './random')),
     '🐙\n',

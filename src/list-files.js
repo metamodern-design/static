@@ -7,7 +7,7 @@ const listFiles = async (context, extensions = []) => {
       ? [].concact(extensions).map((ext) => `*.${ext}`)
       : ['*']
   );
-  
+
   return globby(globs, { cwd: context });
 };
 

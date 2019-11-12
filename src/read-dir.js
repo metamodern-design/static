@@ -7,7 +7,7 @@ import pathToName from './path-to-name';
 const readDir = async (
   context,
   parsers = {},
-  { readAllFiles = false} = {},
+  { readAllFiles = false } = {},
 ) => {
   const extensions = readAllFiles ? [] : Object.keys(parsers);
   const filepaths = await listFiles(context, extensions);
@@ -17,7 +17,7 @@ const readDir = async (
       return readFile(fp, parsers[ext]);
     }),
   );
-  
+
   return reduce(
     filepaths,
     (a, k, i) => a.set(pathToName(k), parsed[i]),

@@ -51,4 +51,4 @@ test('readFile', async (t) => {
     await readFile(path.resolve(contentPath, './random')),
     '🐙\n',
   );
-};
+});

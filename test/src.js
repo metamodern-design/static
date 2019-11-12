@@ -49,11 +49,22 @@ test('pathToName', (t) => {
 
 
 test('readDir', async (t) => {
-  const mp = await readDir(contentPath, { md: parseMd });
+  const mdOnly = await readDir(contentPath, { md: parseMd });
 
   t.deepEqual(
-    [...mp.keys()].sort(),
+    [...mdOnly.keys()].sort(),
     ['post1', 'post2', 'post3'].sort(),
+  );
+  
+  const noFiles = await readDir(contentPath);
+  
+  t.is([...noFiles.keys()].length, 0),
+  
+  const allFiles = await readDir(contentPath, {}, { readAllFiles: true });
+  
+  t.deepEqual(
+    [...allFiles.keys()].sort(),
+    ['post1', 'post2', 'post3', 'random', 'something'].sort(),
   );
 });
 

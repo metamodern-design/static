@@ -54,8 +54,8 @@ test('readFile', async (t) => {
   t.is(
     await readFile(
       path.resolve(contentPath, './something.txt'),
-      (str) => str.length,
+      (str) => str.trim(),
     ),
-    4,
+    '🙈🙉🙊',
   );
 });

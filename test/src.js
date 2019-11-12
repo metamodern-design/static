@@ -1,7 +1,9 @@
 import path from 'path';
 import test from 'ava';
 import listFiles from '../src/list-files';
+import parseMd from '../src/parse-md';
 import pathToName from '../src/path-to-name';
+import readDir from '../src/read-dir';
 import readFile from '../src/read-file';
 
 

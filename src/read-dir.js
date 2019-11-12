@@ -7,8 +7,10 @@ import pathToName from './path-to-name';
 const readDir = async (
   context,
   parsers = {},
+  { readAllFiles = false} = {},
 ) => {
-  const filepaths = await listFiles(context, Object.keys(parsers));
+  const extensions = readAllFiles ? [] : Object.keys(parsers);
+  const filepaths = await listFiles(context, extensions);
   const parsed = await Promise.all(
     filepaths.map((fp) => {
       const ext = path.extname(fp).slice(1);

@@ -46,6 +46,16 @@ test('pathToName', (t) => {
 });
 
 
+test('readDir', async (t) => {
+  const mp = await readDir(contentPath, { md: parseMd });
+
+  t.deepEqual(
+    [...mp.keys()].sort(),
+    ['post1', 'post2', 'post3'].sort(),
+  );
+});
+
+
 test('readFile', async (t) => {
   t.is(
     await readFile(path.resolve(contentPath, './random')),

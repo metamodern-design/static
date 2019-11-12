@@ -7,9 +7,9 @@ import pathToName from '../src/path-to-name';
 const contentPath = path.resolve(__dirname, './content');
 
 
-test('listFiles', (t) => {
+test('listFiles', async (t) => {
   t.deepEqual(
-    listFiles(contentPath),
+    await listFiles(contentPath),
     [
       'post-1.md',
       'post-2.md',
@@ -20,7 +20,7 @@ test('listFiles', (t) => {
   );
   
   t.deepEqual(
-    listFiles(contentPath, 'md'),
+    await listFiles(contentPath, 'md'),
     [
       'post-1.md',
       'post-2.md',
@@ -29,7 +29,7 @@ test('listFiles', (t) => {
   );
   
   t.deepEqual(
-    listFiles(contentPath, ['md', 'txt']),
+    await listFiles(contentPath, ['md', 'txt']),
     [
       'post-1.md',
       'post-2.md',

@@ -56,9 +56,16 @@ test('readDir', async (t) => {
     ['post1', 'post2', 'post3'].sort(),
   );
   
+  const mdTxt = await readDir(contentPath, { md: parseMd, txt: (s) => s });
+
+  t.deepEqual(
+    [...mdTxt.keys()].sort(),
+    ['post1', 'post2', 'post3', 'something'].sort(),
+  );
+  
   const noFiles = await readDir(contentPath);
   
-  t.is([...noFiles.keys()].length, 0),
+  t.is([...noFiles.keys()].length, 0);
   
   const allFiles = await readDir(contentPath, {}, { readAllFiles: true });
   

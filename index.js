@@ -1,6 +1,6 @@
 import importContent from './src/import-content';
 import importData from './src/import-data';
-import mapToObject from './stc/map-to-object';
+import mapToObject from './src/map-to-object';
 
 const context = process.cwd();
 

@@ -1,10 +1,10 @@
 import parseMd from './parse-md';
 
 
-const content = (context) => readDir(
+const readContent = (context) => readDir(
   path.resolve(context, './content'),
   { md: parseMd },
 );
 
 
-export default content;
+export default readContent;

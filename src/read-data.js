@@ -1,10 +1,10 @@
 import yaml from 'yaml';
 
 
-const data = (context) => readDir(
+const readData = (context) => readDir(
   path.resolve(context, './data'),
   { yml: yaml.parse },
 );
 
 
-export default data;
+export default readData;

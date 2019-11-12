@@ -2,6 +2,7 @@ import path from 'path';
 import test from 'ava';
 import listFiles from '../src/list-files';
 import pathToName from '../src/path-to-name';
+import readFile from '../src/read-file';
 
 
 const contentPath = path.resolve(__dirname, './content');
@@ -43,3 +44,11 @@ test('listFiles', async (t) => {
 test('pathToName', (t) => {
   t.is(pathToName('/this/that/the-other-thing.js'), 'theOtherThing');
 });
+
+
+test('readFile', (t) => {
+  t.is(
+    await readFile(path.resolve(contentPath, './random')),
+    '🐙\n',
+  );
+};

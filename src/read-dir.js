@@ -1,4 +1,3 @@
-import path from 'path';
 import reduce from '@arr/reduce';
 import ext from './ext';
 import listFiles from './list-files';
@@ -11,7 +10,11 @@ const readDir = async (
   parsers = {},
   { readAllFiles = false } = {},
 ) => {
-  const extensions = readAllFiles ? [] : Object.keys(parsers);
+  const extensions = (
+    readAllFiles
+      ? []
+      : Object.keys(parsers)
+  );
   const filepaths = await listFiles(context, extensions);
   const parsed = await Promise.all(
     filepaths.map((fp) => readFile(fp, parsers[ext(fp)])),

@@ -1,5 +1,5 @@
 import fs from 'fs-extra';
-import resolvePath from 'resolve-path';
+import resolvePath from './resolve-path';
 
 
 const readFile = async (

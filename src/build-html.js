@@ -6,10 +6,12 @@ import importData from './import-data';
 import listFiles from './list-files';
 import mapToObject from './map-to-object';
 import minifyHtml from './minify-html';
+import readFile from './read-file';
 import renderJstl from './render-jstl';
 import renderPug from './render-pug';
 import resolvePath from './resolve-path';
 import throwIf from './throw-if';
+import writeFile from './write-file';
 
 
 const buildHtml = async (context, {
@@ -25,8 +27,11 @@ const buildHtml = async (context, {
     () => `Looking for entry template, but ${templatesDir} does not exist`,
   );
 
-  const extensions = ['html', 'pug'];
-  const indexFile = listFiles(templatesDir, extensions, 'index');
+  const indexFile = listFiles(
+    templatesDir,
+    ['html', 'jstl', 'pug'],
+    'index',
+  );
 
   throwIf(
     indexFile.length === 0,
@@ -42,7 +47,7 @@ const buildHtml = async (context, {
   const data = mapToObject(importData(context));
   const locals = { content, ...data };
 
-  const html = await caseOf(ext(indexFile), [
+  const htmlString = await caseOf(ext(indexFile), [
     [
       'html',
       () => readFile(indexFile, minifyHtml),

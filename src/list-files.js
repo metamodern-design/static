@@ -21,7 +21,7 @@ const listFiles = async (context, {
   return (
     relative
       ? results
-      : results.map((filename) => path.resolve(context, filename)),
+      : results.map((filename) => path.resolve(context, filename))
   );
 };
 

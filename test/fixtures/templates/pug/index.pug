@@ -1,9 +1,9 @@
 doctype html
-html(lang="en")
+html(lang='en')
   head
-    meta(charset="utf-8")
+    meta(charset='utf-8')
   
   body
     #mainContent(class=divClasses)
-      p(class=pClasses) Hello, #{greeting.name}!
+      p(class=pClasses)= `Hello, ${greeting.name}! `
         span= greeting.emoji

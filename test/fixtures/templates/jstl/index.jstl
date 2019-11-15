@@ -4,7 +4,7 @@
     <meta charset="utf-8">
   </head>
   <body>
-    <div id="mainContent" class="${divClasses.join(' ')}">
+    <div class="${divClasses.join(' ')}" id="mainContent">
       <p class="${pClasses.join(' ')}"> Hello, ${greeting.name}!
         <span>${greeting.emoji}</span>
       </p>

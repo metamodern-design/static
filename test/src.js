@@ -108,9 +108,30 @@ test('readDir', async (t) => {
 });
 
 
+const minifiedHtml = await readFile([templatePath, 'minified/index.html']);
+
+const locals = {
+  greeting: { name: 'World', emoji: '🐣' },
+  divClasses: ['box', 'rounded'],
+  pClasses: ['text-bold', 'text-lg'],
+};
+
 test('minifyHtml', async (t) => {
   const result = await readFile([templatePath, 'html/index.html'], minifyHtml);
-  const expected = await readFile([templatePath, 'minified/index.html']);
   
-  t.is(`${result}\n`, expected);
+  t.is(`${result}\n`, minifiedHtml);
+});
+
+
+test('renderJstl', async (t) => {
+  const result = await readFile([templatePath, 'jstl/index.jstl'], renderJstl(locals));
+  
+  t.is(`${result}\n`, minifiedHtml);
+});
+
+
+test('renderPug', async (t) => {
+  const result = await readFile([templatePath, 'pug/index.pug'], renderPug(locals));
+  
+  t.is(`${result}\n`, minifiedHtml);
 });

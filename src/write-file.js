@@ -1,16 +1,18 @@
 import fs from 'fs-extra';
-import resolvePath from './resolve-path';
+import pathResolve from './path-resolve';
 
 
-const writeFile = async (paths, str) => {
-  const fp = resolvePath(paths);
+const writeFile = async (fp, str) => {
   const out = (
     str.slice(-1) === '\n'
       ? str
       : `${str}\n`
   );
 
-  await fs.outputFile(fp, out);
+  await fs.outputFile(
+    pathResolve(fp),
+    out,
+  );
 };
 
 

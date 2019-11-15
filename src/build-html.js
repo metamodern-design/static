@@ -1,15 +1,15 @@
+import path from 'path';
 import fs from 'fs-extra';
-import ext from './ext';
 import caseOf from './case-of';
 import importContent from './import-content';
 import importData from './import-data';
 import listFiles from './list-files';
 import mapToObject from './map-to-object';
 import minifyHtml from './minify-html';
+import pathExt from './path-ext';
 import readFile from './read-file';
 import renderJstl from './render-jstl';
 import renderPug from './render-pug';
-import resolvePath from './resolve-path';
 import throwIf from './throw-if';
 import writeFile from './write-file';
 
@@ -20,7 +20,7 @@ const buildHtml = async (context, {
   src = 'src',
   templates = 'templates',
 } = {}) => {
-  const templatesDir = resolvePath([context, src, templates]);
+  const templatesDir = path.resolve(context, src, templates);
 
   throwIf(
     !(await fs.pathExists(templatesDir)),
@@ -47,7 +47,7 @@ const buildHtml = async (context, {
   const data = mapToObject(importData(context));
   const locals = { content, ...data };
 
-  const htmlString = await caseOf(ext(indexFile), [
+  const htmlString = await caseOf(pathExt(indexFile), [
     [
       'html',
       () => readFile(indexFile, minifyHtml),

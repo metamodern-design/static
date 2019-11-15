@@ -1,7 +1,8 @@
 import reduce from '@arr/reduce';
-import ext from './ext';
 import listFiles from './list-files';
-import pathToName from './path-to-name';
+import pathCamelize from './path-camelize';
+import pathExt from './path-ext';
+import pathResolve from './path-resolve';
 import readFile from './read-file';
 
 
@@ -15,14 +16,19 @@ const readDir = async (
       ? []
       : Object.keys(parsers)
   );
-  const filepaths = await listFiles(context, extensions);
+  const filepaths = await listFiles(
+    pathResolve(context),
+    extensions),
+  };
   const parsed = await Promise.all(
-    filepaths.map((fp) => readFile(fp, parsers[ext(fp)])),
+    filepaths.map(
+      (fp) => readFile(fp, parsers[pathExt(fp)])
+    ),
   );
 
   return reduce(
     filepaths,
-    (a, k, i) => a.set(pathToName(k), parsed[i]),
+    (a, k, i) => a.set(pathCamelize(k), parsed[i]),
     new Map(),
   );
 };

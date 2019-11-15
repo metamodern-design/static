@@ -1,14 +1,16 @@
 import fs from 'fs-extra';
-import resolvePath from './resolve-path';
+import pathResolve from './path-resolve';
 
 
 const readFile = async (
-  paths,
+  fp,
   parser,
   options,
 ) => {
-  const fp = resolvePath(paths);
-  const str = await fs.readFile(fp, 'utf8');
+  const str = await fs.readFile(
+    pathResolve(fp), 
+    'utf8',
+  );
 
   return (
     !parser

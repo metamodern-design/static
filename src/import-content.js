@@ -1,11 +1,10 @@
-import path from 'path';
-import parseMd from './parse-md';
 import readDir from './read-dir';
+import renderMd from './render-md';
 
 
 const importContent = (context) => readDir(
-  path.resolve(context, './content'),
-  { md: parseMd },
+  [context, 'content'],
+  { md: renderMd },
 );
 
 

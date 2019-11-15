@@ -15,7 +15,7 @@ const listFiles = async (
   const results = await globby(globs, { cwd: context });
 
   return results.map(
-    (filename) => path.resolve(context, `./${filename}`),
+    (filename) => path.resolve(context, filename),
   );
 };
 

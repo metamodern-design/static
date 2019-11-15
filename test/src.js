@@ -7,7 +7,7 @@ import pathToName from '../src/path-to-name';
 import readDir from '../src/read-dir';
 import readFile from '../src/read-file';
 import renderJstl from '../src/render-jstl';
-import renderPug from '../stc/render-pug';
+import renderPug from '../src/render-pug';
 
 
 const contentPath = path.resolve(__dirname, './fixtures/content');

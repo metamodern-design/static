@@ -5,7 +5,7 @@ import resolvePath from './resolve-path';
 const readFile = async (
   paths,
   parser,
-  options = {},
+  options,
 ) => {
   const fp = resolvePath(paths);
   const str = await fs.readFile(fp, 'utf8');

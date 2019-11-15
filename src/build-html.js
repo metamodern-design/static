@@ -27,38 +27,38 @@ const buildHtml = async (context, {
     () => `Looking for entry template, but ${templatesDir} does not exist`,
   );
 
-  const indexFile = listFiles(
+  const entryFile = listFiles(
     templatesDir,
     ['html', 'jstl', 'pug'],
-    'index',
+    name,
   );
 
   throwIf(
-    indexFile.length === 0,
-    () => `No entry file named "index.html" or "index.pug" was found in ${templatesDir}`,
+    entryFile.length === 0,
+    () => `No entry file named "${name}.html" or "${name}.pug" was found in ${templatesDir}`,
   );
 
   throwIf(
-    indexFile.length > 1,
-    () => `Multiple entry files names "index" were found in ${templatesDir}. Rename each one that is not the entry template.`,
+    entryFile.length > 1,
+    () => `Multiple entry files named "${name}" were found in ${templatesDir}. Rename each one that is not the entry template.`,
   );
 
   const content = mapToObject(importContent(context));
   const data = mapToObject(importData(context));
   const locals = { content, ...data };
 
-  const htmlString = await caseOf(pathExt(indexFile), [
+  const htmlString = await caseOf(pathExt(entryFile), [
     [
       'html',
-      () => readFile(indexFile, minifyHtml),
+      () => readFile(entryFile, minifyHtml),
     ],
     [
       'jstl',
-      () => readFile(indexFile, renderJstl(locals)),
+      () => readFile(entryFile, renderJstl(locals)),
     ],
     [
       'pug',
-      () => readFile(indexFile, renderPug(locals), { basedir: templatesDir }),
+      () => readFile(entryFile, renderPug(locals), { basedir: templatesDir }),
     ],
   ])();
 

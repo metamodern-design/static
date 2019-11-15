@@ -6,6 +6,7 @@ const listFiles = async (context, {
   extensions = [],
   name = '*',
   recursive = false,
+  relative = false,
 } = {}) => {
   const prefix = recursive ? '**/' : '';
   const postfix = (name !== '*') ? '.*' : '';
@@ -17,8 +18,10 @@ const listFiles = async (context, {
 
   const results = await globby(globs, { cwd: context });
 
-  return results.map(
-    (filename) => path.resolve(context, filename),
+  return (
+    relative
+      ? results
+      : results.map((filename) => path.resolve(context, filename)),
   );
 };
 

@@ -8,7 +8,7 @@ const listFiles = async (context, {
   recursive = false,
 } = {}) => {
   const prefix = recursive ? '**/' : '';
-  const postfix = (name !== '*') ? `.*` : '';
+  const postfix = (name !== '*') ? '.*' : '';
   const globs = (
     extensions.length > 0
       ? [].concat(extensions).map((ext) => `${prefix}${name}.${ext}`)

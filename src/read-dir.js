@@ -8,7 +8,7 @@ import readFile from './read-file';
 
 const readDir = async (
   context,
-  parsers = {}, 
+  parsers = {},
   {
     readAllFiles = false,
     recursive = false,

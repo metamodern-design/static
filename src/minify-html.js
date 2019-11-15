@@ -4,7 +4,10 @@ import readFile from './read-file';
 
 const minifyHtml = async (
   fp,
-  options = {},
+  options = {
+    collapseWhitespace: true,
+    conservativeCollapse: true,
+  },
 ) => readFile(
   fp,
   (str) => htmlMinifier.minify(str, options),

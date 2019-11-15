@@ -7,6 +7,10 @@ import readFile from './read-file';
 const renderJstl = async (
   fp,
   locals = {},
+  options = {
+    collapseWhitespace: true,
+    conservativeCollapse: true,
+  },
 ) => {
   const names = (
     !locals.length
@@ -25,7 +29,7 @@ const renderJstl = async (
 
   const result = await readFile(fp, parser);
 
-  return htmlMinifier.minify(result);
+  return htmlMinifier.minify(result, options);
 };
 
 

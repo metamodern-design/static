@@ -47,7 +47,7 @@ test('listFiles', async (t) => {
   );
   
   t.deepEqual(
-    await listFiles(contentPath, 'md'),
+    await listFiles(contentPath, { extensions: 'md' }),
     [
       'post-1.md',
       'post-2.md',
@@ -56,7 +56,7 @@ test('listFiles', async (t) => {
   );
   
   t.deepEqual(
-    await listFiles(contentPath, ['md', 'txt']),
+    await listFiles(contentPath, { extensions: ['md', 'txt'] }),
     [
       'post-1.md',
       'post-2.md',
@@ -66,7 +66,7 @@ test('listFiles', async (t) => {
   );
   
   t.deepEqual(
-    await listFiles(contentPath, 'txt', { recursive: true }),
+    await listFiles(contentPath, { extensions: 'txt', recursive: true }),
     [
       'something.txt',
       'somedir/happy.txt',

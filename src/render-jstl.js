@@ -1,4 +1,4 @@
-/*eslint no-new-func: "off"*/
+/* eslint no-new-func: "off" */
 
 import htmlMinifier from 'html-minifier';
 import readFile from './read-file';
@@ -20,11 +20,11 @@ const renderJstl = async (
   );
   const parser = (str) => new Function(
     'locals',
-    `${destructure}return \`${str}\``
+    `${destructure}return \`${str}\``,
   )(locals);
 
   const result = await readFile(fp, parser);
-  
+
   return htmlMinifier.minify(result);
 };
 

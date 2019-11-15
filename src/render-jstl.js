@@ -13,12 +13,12 @@ const renderJstl = (locals = {}) => {
     names.length > 0
       ? `const {${names.join(',')}} = locals;`
       : ''
-  );  
+  );
   const render = (str) => new Function(
     'locals',
     `${destructure}return \`${str}\``,
   )(locals);
-  
+
   return (str, options) => minifyHtml(render(str), options);
 };
 

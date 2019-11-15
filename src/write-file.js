@@ -9,7 +9,7 @@ const writeFile = async (paths, str) => {
       ? str
       : `${str}\n`
   );
-  
+
   await fs.outputFile(fp, out);
 };
 

@@ -6,7 +6,7 @@ import fs from 'fs-extra';
 import presetEnv from 'postcss-preset-env';
 import sugarss from 'sugarss';
 import tailwindcss from 'tailwindcss';
-import browserslistConfig from './browserslist.config'; 
+import browserslistConfig from './browserslist.config';
 import caseOf from './case-of';
 import listFiles from './list-files';
 import pathExt from './path-ext';
@@ -47,16 +47,16 @@ const buildCss = async (context, {
     entryFile.length > 1,
     () => `Multiple entry files named "${name}" were found in ${stylesDir}. Rename each one that is not the entry stylesheet.`,
   );
-  
+
   const configPlugins = (ext) => (
     includeDefaultPlugins
       ? [
-          easyImport({ extensions: `.${ext}` }),
-          tailwindcss(tailwindConfig),
-          ...postcssPlugins,
-          presetEnv({ browsers: targetBrowsers }),
-          cssnano({ preset: 'default' }),
-        ]
+        easyImport({ extensions: `.${ext}` }),
+        tailwindcss(tailwindConfig),
+        ...postcssPlugins,
+        presetEnv({ browsers: targetBrowsers }),
+        cssnano({ preset: 'default' }),
+      ]
       : postcssPlugins
   );
 
@@ -70,7 +70,7 @@ const buildCss = async (context, {
       () => ({ parser: sugarss, plugins: configPlugins('sss') }),
     ],
   ]);
-  
+
   const outputFile = path.resolve(context, dist, `${name}.css`);
 
   const cssString = await postcss(plugins).process(
@@ -81,7 +81,7 @@ const buildCss = async (context, {
       to: outputFile,
     },
   );
-  
+
   await writeFile(
     outputFile,
     cssString,

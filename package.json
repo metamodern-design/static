@@ -27,11 +27,17 @@
     "@arr/reduce": "^1.0.1",
     "@metamodern/design-system": "^0.1.0",
     "camelcase": "^5.3.1",
+    "cssnano": "^4.1.10",
     "fs-extra": "^8.1.0",
     "globby": "^10.0.1",
     "html-minifier": "^4.0.0",
     "markdown-it": "^10.0.0",
+    "postcss": "^7.0.21",
+    "postcss-easy-import": "^3.0.0",
+    "postcss-preset-env": "^6.7.0",
     "pug": "^2.0.4",
+    "sugarss": "^2.0.0",
+    "tailwindcss": "^1.1.3",
     "yaml": "^1.7.2"
   },
   "devDependencies": {

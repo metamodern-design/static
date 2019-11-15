@@ -6,7 +6,6 @@ const minifyHtml = async (
   fp,
   options = {
     collapseWhitespace: true,
-    conservativeCollapse: true,
   },
 ) => readFile(
   fp,

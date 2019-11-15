@@ -9,7 +9,6 @@ const renderJstl = async (
   locals = {},
   options = {
     collapseWhitespace: true,
-    conservativeCollapse: true,
   },
 ) => {
   const names = (

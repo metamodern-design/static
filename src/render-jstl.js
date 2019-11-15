@@ -1,6 +1,6 @@
 /* eslint no-new-func: "off" */
 
-import minifyHtml from 'minify-html';
+import minifyHtml from './minify-html';
 
 
 const renderJstl = (locals = {}) => {

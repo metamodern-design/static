@@ -109,8 +109,8 @@ test('readDir', async (t) => {
 
 
 test('minifyHtml', async (t) => {
-  const result = await minifyHtml(path.resolve(templatePath, 'html/index.html'));
-  const expected = await readFile(path.resolve(templatePath, 'minified/index.html'));
+  const result = await readFile([templatePath, 'html/index.html'], minifyHtml);
+  const expected = await readFile([templatePath, 'minified/index.html']);
   
   t.is(`${result}\n`, expected);
 });

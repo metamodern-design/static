@@ -2,7 +2,7 @@ import path from 'path';
 import test from 'ava';
 import listFiles from '../src/list-files';
 import minifyHtml from '../src/minify-html';
-import pathToName from '../src/path-to-name';
+import pathCamelize from '../src/path-camelize';
 import readDir from '../src/read-dir';
 import readFile from '../src/read-file';
 import renderJstl from '../src/render-jstl';
@@ -14,8 +14,23 @@ const contentPath = path.resolve(__dirname, './fixtures/content');
 const templatePath = path.resolve(__dirname, './fixtures/templates');
 
 
-test('pathToName', (t) => {
-  t.is(pathToName('/this/that/the-other-thing.js'), 'theOtherThing');
+test('pathCamelize', (t) => {
+  t.is(
+    pathCamelize('/this/that/the-other-thing.js'),
+    'theOtherThing',
+  );
+  t.is(
+    pathCamelize('/this/that/the-other-thing.js', 1),
+    'thatTheOtherThing',
+  );
+  t.is(
+    pathCamelize('/this/that/the-other-thing.js', 2),
+    'thisThatTheOtherThing',
+  );
+  t.is(
+    pathCamelize('/this/that/the-other-thing.js', 10),
+    'thisThatTheOtherThing',
+  );
 });
 
 

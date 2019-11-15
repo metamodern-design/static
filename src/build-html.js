@@ -1,8 +1,11 @@
 import path from 'path';
 import fs from 'fs-extra';
+import ext from './ext';
 import caseOf from './case-of';
 import importContent from './import-content';
 import importData from './import-data';
+import ext from './file-extension';
+import listFiles from './list-files';
 import mapToObject from './map-to-object';
 import minifyHtml from './minify-html';
 import renderJstl from './render-jstl';
@@ -16,7 +19,7 @@ const buildHtml = async (context, {
   src = 'src',
   templates = 'templates',
 } = {}) => {
-  const templatesDir = path.resolve(context, './${src}', './${templates}');
+  const templatesDir = path.resolve(context, src, templates);
   
   throwIf(
     !(await fs.pathExists(templatesDir)),
@@ -46,7 +49,7 @@ const buildHtml = async (context, {
     ['pug', () => renderPug(templatesDir, 'index.pug', locals)],
   ])();
   
-  const out = path.resolve(context, './${dist}', './${name}.html');
+  const out = path.resolve(context, dist, '${name}.html');
 
   await fs.outputFile(out, `${html}\n`);
 };

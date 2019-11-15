@@ -8,12 +8,20 @@ import readFile from './read-file';
 
 const readDir = async (
   context,
-  parsers = {},
-  { readAllFiles = false } = {},
+  parsers = {}, 
+  {
+    readAllFiles = false,
+    recursive = false,
+  } = {},
 ) => {
+  const extensions = (
+    readAllFiles
+      ? []
+      : Object.keys(parsers)
+  );
   const filepaths = await listFiles(
     pathResolve(context),
-    readAllFiles ? [] : Object.keys(parsers),
+    { extensions, recursive },
   );
   const parsed = await Promise.all(
     filepaths.map(

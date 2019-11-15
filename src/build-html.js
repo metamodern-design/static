@@ -27,11 +27,10 @@ const buildHtml = async (context, {
     () => `Looking for entry template, but ${templatesDir} does not exist`,
   );
 
-  const entryFile = listFiles(
-    templatesDir,
-    ['html', 'jstl', 'pug'],
+  const entryFile = listFiles(templatesDir, {
     name,
-  );
+    extensions: ['html', 'jstl', 'pug'],
+  });
 
   throwIf(
     entryFile.length === 0,

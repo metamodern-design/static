@@ -64,6 +64,14 @@ test('listFiles', async (t) => {
       'something.txt',
     ].map((x) => path.resolve(contentPath, x)),
   );
+  
+  t.deepEqual(
+    await listFiles(contentPath, 'txt', { recursive: true }),
+    [
+      'something.txt',
+      'somedir/happy.txt',
+    ].map((x) => path.resolve(contentPath, x)),
+  );
 });
 
 

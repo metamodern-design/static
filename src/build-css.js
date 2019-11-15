@@ -32,11 +32,10 @@ const buildCss = async (context, {
     () => `Looking for entry stylesheet, but ${stylesDir} does not exist`,
   );
 
-  const entryFile = listFiles(
-    stylesDir,
-    ['css', 'sss'],
+  const entryFile = listFiles(stylesDir, {
     name,
-  );
+    extensions: ['css', 'sss'],
+  });
 
   throwIf(
     entryFile.length === 0,

@@ -11,15 +11,10 @@ const readDir = async (
   parsers = {},
   { readAllFiles = false } = {},
 ) => {
-  const extensions = (
-    readAllFiles
-      ? []
-      : Object.keys(parsers)
-  );
   const filepaths = await listFiles(
     pathResolve(context),
-    extensions),
-  };
+    readAllFiles ? [] : Object.keys(parsers),
+  );
   const parsed = await Promise.all(
     filepaths.map(
       (fp) => readFile(fp, parsers[pathExt(fp)])

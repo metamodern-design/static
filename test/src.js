@@ -11,7 +11,7 @@ import renderPug from '../src/render-pug';
 
 
 const contentPath = path.resolve(__dirname, './fixtures/content');
-const templatePath = path.resolve(__dirname, './fixtures/template');
+const templatePath = path.resolve(__dirname, './fixtures/templates');
 
 
 test('pathToName', (t) => {

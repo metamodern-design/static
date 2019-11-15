@@ -1,5 +1,13 @@
+import path from 'path';
+import fs from 'fs-extra';
+import caseOf from './case-of';
 import importContent from './import-content';
 import importData from './import-data';
+import mapToObject from './map-to-object';
+import minifyHtml from './minify-html';
+import renderJstl from './render-jstl';
+import renderPug from './render-pug';
+import throwIf from './throw-if';
 
 
 const buildHtml = async (context, {
@@ -32,9 +40,10 @@ const buildHtml = async (context, {
   const data = mapToObject(importData(context));
   const locals = { content, ...data };
   
-  const html = caseOf(ext(indexFile), [
-    ['html', () => readFile(indexFile)],
-    ['pug', () => renderPug(templatesDir, { locals })],
+  const html = await caseOf(ext(indexFile), [
+    ['html', () => minifyHtml(indexFile)],
+    ['jstl', () => renderJstl(indexFile, locals)], 
+    ['pug', () => renderPug(templatesDir, 'index.pug', locals)],
   ])();
   
   const out = path.resolve(context, './${public}', './${name}.html');

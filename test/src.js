@@ -1,13 +1,22 @@
 import path from 'path';
 import test from 'ava';
 import listFiles from '../src/list-files';
+import minifyHtml from '../src/minifyHtml';
 import parseMd from '../src/parse-md';
 import pathToName from '../src/path-to-name';
 import readDir from '../src/read-dir';
 import readFile from '../src/read-file';
+import renderJstl from '../src/render-jstl';
+import renderPug from '../stc/render-pug';
 
 
-const contentPath = path.resolve(__dirname, './content');
+const contentPath = path.resolve(__dirname, './fixtures/content');
+const templatePath = path.resolve(__dirname, './fixtures/template');
+
+
+test('pathToName', (t) => {
+  t.is(pathToName('/this/that/the-other-thing.js'), 'theOtherThing');
+});
 
 
 test('listFiles', async (t) => {
@@ -43,8 +52,18 @@ test('listFiles', async (t) => {
 });
 
 
-test('pathToName', (t) => {
-  t.is(pathToName('/this/that/the-other-thing.js'), 'theOtherThing');
+test('readFile', async (t) => {
+  t.is(
+    await readFile(path.resolve(contentPath, './random')),
+    '🐙\n',
+  );
+  t.is(
+    await readFile(
+      path.resolve(contentPath, './something.txt'),
+      (str) => str.trim(),
+    ),
+    '🙈🙉🙊',
+  );
 });
 
 
@@ -89,16 +108,9 @@ test('readDir', async (t) => {
 });
 
 
-test('readFile', async (t) => {
+test('minifyHtml', async (t) => {
   t.is(
-    await readFile(path.resolve(contentPath, './random')),
-    '🐙\n',
-  );
-  t.is(
-    await readFile(
-      path.resolve(contentPath, './something.txt'),
-      (str) => str.trim(),
-    ),
-    '🙈🙉🙊',
+    await minifyHtml(path.resolve(templatePath, 'html/index.html'),
+    await readFile(path.resolve(templatePath, 'minified/index.html'),
   );
 });

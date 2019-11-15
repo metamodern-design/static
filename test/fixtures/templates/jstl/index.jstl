@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <div id="mainContent" class="${divClasses.join(' ')}">
+      <p class="${pClasses.join(' ')}"> Hello, ${greeting.name}!
+        <span>${greeting.emoji}</span>
+      </p>
+    </div>
+  </body>
+</html>

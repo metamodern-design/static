@@ -1,16 +1,16 @@
 import path from 'path';
 import pug from 'pug';
+import readFile from './read-file';
 
 
-const renderPug = (basedir, {
-  entry = 'index.pug',
+const renderPug = async (
+  basedir,
+  entry,
   locals = {},
-} = {}) => {
-  const fp = path.resolve(basedir, entry);
-  const options = { basedir, ...locals };
-  
-  return pug.renderFile(fp, options);
-};
+) => readFile(
+  path.resolve(basedir, entry),
+  (str) => pug.render(str, { basedir, ...locals }),
+);
 
 
 export default renderPug;

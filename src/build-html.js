@@ -19,7 +19,7 @@ const buildHtml = async (context, {
   templates = 'templates',
 } = {}) => {
   const templatesDir = path.resolve(context, src, templates);
-  
+
   throwIf(
     !(await fs.pathExists(templatesDir)),
     () => `Looking for entry template, but ${templatesDir} does not exist`,
@@ -47,7 +47,7 @@ const buildHtml = async (context, {
     ['jstl', () => renderJstl(indexFile, locals)],
     ['pug', () => renderPug(templatesDir, 'index.pug', locals)],
   ])();
-  
+
   const out = path.resolve(context, dist, `${name}.html`);
 
   await fs.outputFile(out, `${html}\n`);

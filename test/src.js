@@ -110,7 +110,7 @@ test('readDir', async (t) => {
 
 test('minifyHtml', async (t) => {
   t.is(
-    await minifyHtml(path.resolve(templatePath, 'html/index.html'),
-    await readFile(path.resolve(templatePath, 'minified/index.html'),
+    await minifyHtml(path.resolve(templatePath, 'html/index.html')),
+    await readFile(path.resolve(templatePath, 'minified/index.html')),
   );
 });

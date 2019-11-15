@@ -1,16 +1,9 @@
 /* eslint no-new-func: "off" */
 
-import htmlMinifier from 'html-minifier';
-import readFile from './read-file';
+import minifyHtml from 'minify-html';
 
 
-const renderJstl = async (
-  fp,
-  locals = {},
-  options = {
-    collapseWhitespace: true,
-  },
-) => {
+const renderJstl = (locals = {}) => {
   const names = (
     !locals.length
       ? Object.keys(locals)
@@ -20,15 +13,13 @@ const renderJstl = async (
     names.length > 0
       ? `const {${names.join(',')}} = locals;`
       : ''
-  );
-  const parser = (str) => new Function(
+  );  
+  const render = (str) => new Function(
     'locals',
     `${destructure}return \`${str}\``,
   )(locals);
-
-  const result = await readFile(fp, parser);
-
-  return htmlMinifier.minify(result, options);
+  
+  return (str, options) => minifyHtml(render(str), options);
 };
 
 

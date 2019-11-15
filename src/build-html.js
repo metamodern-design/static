@@ -1,4 +1,3 @@
-import path from 'path';
 import fs from 'fs-extra';
 import ext from './ext';
 import caseOf from './case-of';
@@ -9,6 +8,7 @@ import mapToObject from './map-to-object';
 import minifyHtml from './minify-html';
 import renderJstl from './render-jstl';
 import renderPug from './render-pug';
+import resolvePath from './resolve-path';
 import throwIf from './throw-if';
 
 
@@ -18,7 +18,7 @@ const buildHtml = async (context, {
   src = 'src',
   templates = 'templates',
 } = {}) => {
-  const templatesDir = path.resolve(context, src, templates);
+  const templatesDir = resolvePath([context, src, templates]);
 
   throwIf(
     !(await fs.pathExists(templatesDir)),
@@ -43,14 +43,24 @@ const buildHtml = async (context, {
   const locals = { content, ...data };
 
   const html = await caseOf(ext(indexFile), [
-    ['html', () => minifyHtml(indexFile)],
-    ['jstl', () => renderJstl(indexFile, locals)],
-    ['pug', () => renderPug(templatesDir, 'index.pug', locals)],
+    [
+      'html',
+      () => readFile(indexFile, minifyHtml),
+    ],
+    [
+      'jstl',
+      () => readFile(indexFile, renderJstl(locals)),
+    ],
+    [
+      'pug',
+      () => readFile(indexFile, renderPug(locals), { basedir: templatesDir }),
+    ],
   ])();
 
-  const out = path.resolve(context, dist, `${name}.html`);
-
-  await fs.outputFile(out, `${html}\n`);
+  await writeFile(
+    [context, dist, `${name}.html`],
+    htmlString,
+  );
 };
 
 

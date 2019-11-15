@@ -1,16 +1,12 @@
 import htmlMinifier from 'html-minifier';
-import readFile from './read-file';
 
 
-const minifyHtml = async (
-  fp,
+const minifyHtml = (
+  str,
   options = {
     collapseWhitespace: true,
   },
-) => readFile(
-  fp,
-  (str) => htmlMinifier.minify(str, options),
-);
+) => htmlMinifier.minify(str, options);
 
 
 export default minifyHtml;

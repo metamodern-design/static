@@ -12,7 +12,7 @@ import throwIf from './throw-if';
 
 const buildHtml = async (context, {
   name = 'index',
-  public = 'dist',
+  dist = 'dist',
   src = 'src',
   templates = 'templates',
 } = {}) => {
@@ -46,7 +46,7 @@ const buildHtml = async (context, {
     ['pug', () => renderPug(templatesDir, 'index.pug', locals)],
   ])();
   
-  const out = path.resolve(context, './${public}', './${name}.html');
+  const out = path.resolve(context, './${dist}', './${name}.html');
 
   await fs.outputFile(out, `${html}\n`);
 };

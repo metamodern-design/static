@@ -1,3 +1,5 @@
+/*eslint no-new-func: "off"*/
+
 import htmlMinifier from 'html-minifier';
 import readFile from './read-file';
 

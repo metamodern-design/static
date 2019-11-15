@@ -2,11 +2,11 @@ import path from 'path';
 import test from 'ava';
 import listFiles from '../src/list-files';
 import minifyHtml from '../src/minify-html';
-import parseMd from '../src/parse-md';
 import pathToName from '../src/path-to-name';
 import readDir from '../src/read-dir';
 import readFile from '../src/read-file';
 import renderJstl from '../src/render-jstl';
+import renderMd from '../src/render-md';
 import renderPug from '../src/render-pug';
 
 
@@ -70,7 +70,7 @@ test('readFile', async (t) => {
 test('readDir', async (t) => {
   const mdOnly = await readDir(
     contentPath,
-    { md: parseMd },
+    { md: renderMd },
   );
 
   t.deepEqual(
@@ -80,7 +80,7 @@ test('readDir', async (t) => {
   
   const mdTxt = await readDir(
     contentPath,
-    { md: parseMd, txt: (s) => s },
+    { md: renderMd, txt: (s) => s },
   );
 
   t.deepEqual(

@@ -17,7 +17,7 @@ const readDir = async (
   );
   const parsed = await Promise.all(
     filepaths.map(
-      (fp) => readFile(fp, parsers[pathExt(fp)])
+      (fp) => readFile(fp, parsers[pathExt(fp)]),
     ),
   );
 

@@ -8,7 +8,7 @@ const readFile = async (
   options,
 ) => {
   const str = await fs.readFile(
-    pathResolve(fp), 
+    pathResolve(fp),
     'utf8',
   );
 

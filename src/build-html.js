@@ -4,7 +4,6 @@ import ext from './ext';
 import caseOf from './case-of';
 import importContent from './import-content';
 import importData from './import-data';
-import ext from './file-extension';
 import listFiles from './list-files';
 import mapToObject from './map-to-object';
 import minifyHtml from './minify-html';

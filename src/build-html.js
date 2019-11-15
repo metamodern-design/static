@@ -48,7 +48,10 @@ const buildHtml = async (context, {
     ['pug', () => renderPug(templatesDir, 'index.pug', locals)],
   ])();
   
-  const out = path.resolve(context, dist, '${name}.html');
+  const out = path.resolve(context, dist, `${name}.html`);
 
   await fs.outputFile(out, `${html}\n`);
 };
+
+
+export default buildHtml;

@@ -27,37 +27,38 @@ const buildHtml = async (context, {
     () => `Looking for entry template, but ${templatesDir} does not exist`,
   );
 
-  const entryFile = listFiles(templatesDir, {
+  const fileResults = listFiles(templatesDir, {
     name,
     extensions: ['html', 'jstl', 'pug'],
   });
 
   throwIf(
-    entryFile.length === 0,
+    fileResults.length === 0,
     () => `No entry file named "${name}.html" or "${name}.pug" was found in ${templatesDir}`,
   );
 
   throwIf(
-    entryFile.length > 1,
+    fileResults.length > 1,
     () => `Multiple entry files named "${name}" were found in ${templatesDir}. Rename each one that is not the entry template.`,
   );
 
+  const entryPath = fileResults[0];
   const content = mapToObject(importContent(context));
   const data = mapToObject(importData(context));
   const locals = { content, ...data };
 
-  const htmlString = await caseOf(pathExt(entryFile), [
+  const htmlString = await caseOf(pathExt(entryPath), [
     [
       'html',
-      () => readFile(entryFile, minifyHtml),
+      () => readFile(entryPath, minifyHtml),
     ],
     [
       'jstl',
-      () => readFile(entryFile, renderJstl(locals)),
+      () => readFile(entryPath, renderJstl(locals)),
     ],
     [
       'pug',
-      () => readFile(entryFile, renderPug(locals), { basedir: templatesDir }),
+      () => readFile(entryPath, renderPug(locals), { basedir: templatesDir }),
     ],
   ])();
 

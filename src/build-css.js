@@ -27,7 +27,7 @@ const buildCss = async (context, {
 } = {}) => {
   const stylesDir = path.resolve(context, src, styles);
 
-  if !(await fs.pathExists(stylesDir)) {
+  if (!(await fs.pathExists(stylesDir))) {
     await copyAssets(styles, context);
   }
 

@@ -35,12 +35,12 @@ const buildCss = async (context, {
     name,
     extensions: ['css', 'sss'],
   });
-  
+
   throwIf(
     fileResults.length > 1,
     () => `Multiple entry files named "${name}" were found in ${stylesDir}. Rename each one that is not the entry stylesheet.`,
   );
-  
+
   const buildCache = path.resolve(context, '.metamodern');
   const entryPath = path.resolve(buildCache, `${name}.sss`);
 
@@ -49,11 +49,11 @@ const buildCss = async (context, {
     fileResults.length === 1
       ? path.relative(buildCache, fileResults[0])
       : listFiles(stylesDir, {
-          extensions: ['css', 'sss'],
-          recursive: true,
-        }).map((fp) => path.relative(buildCache, fp)),
+        extensions: ['css', 'sss'],
+        recursive: true,
+      }).map((fp) => path.relative(buildCache, fp)),
   );
-  
+
   await writeFile(
     entryPath,
     importsList.map((fp) => `@import '${fp}'`).join('\n'),

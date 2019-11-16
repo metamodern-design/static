@@ -8,7 +8,6 @@ import presetEnv from 'postcss-preset-env';
 import sugarss from 'sugarss';
 import tailwindcss from 'tailwindcss';
 import browserslistConfig from './browserslist.config';
-import caseOf from './case-of';
 import listFiles from './list-files';
 import pathExt from './path-ext';
 import throwIf from './throw-if';
@@ -20,6 +19,7 @@ const buildCss = async (context, {
   dist = 'dist',
   src = 'src',
   styles = 'styles',
+  external = [],
   includeDefaultPlugins = true,
   postcssPlugins = [],
   tailwindConfig = designSystem(),
@@ -27,30 +27,42 @@ const buildCss = async (context, {
 } = {}) => {
   const stylesDir = path.resolve(context, src, styles);
 
-  throwIf(
-    !(await fs.pathExists(stylesDir)),
-    () => `Looking for entry stylesheet, but ${stylesDir} does not exist`,
-  );
+  if !(await fs.pathExists(stylesDir)) {
+    await copyAssets(styles, context);
+  }
 
-  const entryFile = listFiles(stylesDir, {
+  const fileResults = listFiles(stylesDir, {
     name,
     extensions: ['css', 'sss'],
   });
-
+  
   throwIf(
-    entryFile.length === 0,
-    () => `No entry file named "${name}.css" or "${name}.sss" was found in ${stylesDir}`,
-  );
-
-  throwIf(
-    entryFile.length > 1,
+    fileResults.length > 1,
     () => `Multiple entry files named "${name}" were found in ${stylesDir}. Rename each one that is not the entry stylesheet.`,
   );
+  
+  const buildCache = path.resolve(context, '.metamodern');
+  const entryPath = path.resolve(buildCache, `${name}.sss`);
 
-  const configPlugins = (ext) => (
+  const importsList = [].concat(
+    external,
+    fileResults.length === 1
+      ? path.relative(buildCache, fileResults[0])
+      : listFiles(stylesDir, {
+          extensions: ['css', 'sss'],
+          recursive: true,
+        }).map((fp) => path.relative(buildCache, fp)),
+  );
+  
+  await writeFile(
+    entryPath,
+    importsList.map((fp) => `@import '${fp}'`).join('\n'),
+  );
+
+  const plugins = (
     includeDefaultPlugins
       ? [
-        easyImport({ extensions: `.${ext}` }),
+        easyImport({ extensions: ['.css', '.sss'] }),
         tailwindcss(tailwindConfig),
         ...postcssPlugins,
         presetEnv({ browsers: targetBrowsers }),
@@ -59,30 +71,16 @@ const buildCss = async (context, {
       : postcssPlugins
   );
 
-  const { plugins, parser } = caseOf(pathExt(entryFile), [
-    [
-      'css',
-      () => ({ plugins: configPlugins('css') }),
-    ],
-    [
-      'sss',
-      () => ({ parser: sugarss, plugins: configPlugins('sss') }),
-    ],
-  ]);
+  const outputPath = path.resolve(context, dist, `${name}.css`);
 
-  const outputFile = path.resolve(context, dist, `${name}.css`);
-
-  const cssString = await postcss(plugins).process(
-    entryFile,
-    {
-      parser,
-      from: entryFile,
-      to: outputFile,
-    },
-  );
+  const cssString = await postcss(plugins).process(entryPath, {
+    from: entryPath,
+    parser: sugarss,
+    to: outputPath,
+  });
 
   await writeFile(
-    outputFile,
+    outputPath,
     cssString,
   );
 };

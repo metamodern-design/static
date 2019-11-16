@@ -27,6 +27,7 @@
     "@arr/reduce": "^1.0.1",
     "@metamodern/design-system": "^0.1.0",
     "camelcase": "^5.3.1",
+    "cpy": "^7.3.0",
     "cssnano": "^4.1.10",
     "fs-extra": "^8.1.0",
     "globby": "^10.0.1",

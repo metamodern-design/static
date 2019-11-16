@@ -8,8 +8,8 @@ import presetEnv from 'postcss-preset-env';
 import sugarss from 'sugarss';
 import tailwindcss from 'tailwindcss';
 import browserslistConfig from './browserslist.config';
+import copyAssets from './copy-assets';
 import listFiles from './list-files';
-import pathExt from './path-ext';
 import throwIf from './throw-if';
 import writeFile from './write-file';
 
@@ -46,6 +46,9 @@ const buildCss = async (context, {
 
   const importsList = [].concat(
     external,
+    includeDefaultPlugins
+      ? 'tailwindcss/base'
+      : [],
     fileResults.length === 1
       ? path.relative(buildCache, fileResults[0])
       : listFiles(stylesDir, {

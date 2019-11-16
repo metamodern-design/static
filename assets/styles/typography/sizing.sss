@@ -1,0 +1,41 @@
+/* ABSOLUTE SIZING */
+
+.narrow
+  @apply leading-base-narrow
+
+.sm
+  @apply text-sm
+  @apply leading-sm
+
+.sm.narrow
+  @apply leading-sm-narrow
+
+.lg
+  @apply text-lg
+  @apply leading-lg
+
+.lg.narrow
+  @apply leading-lg-narrow
+
+
+/* RELATIVE SIZING */
+
+.larger
+  font-size: 1.236em
+
+.smaller
+  font-size: 0.809em
+
+p.larger,
+p.smaller
+  line-height: 1.618
+
+p.narrower,
+p.larger.narrower,
+p.smaller.narrower
+  line-height: 1.236
+
+p.wider,
+p.larger.wider,
+p.smaller.wider
+  line-height: 2

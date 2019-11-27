@@ -5,9 +5,9 @@ import copyAssets from './src/copy-assets';
 import tryCatch from './src/try-catch';
 
 
-const build = async () => {
-  const context = process.cwd();
-
+const build = async (
+  context = process.cwd(),
+) => {
   tryCatch(
     async () => {
       await buildHtml(context);

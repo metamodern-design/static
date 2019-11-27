@@ -5,7 +5,7 @@ import copyAssets from './src/copy-assets';
 import tryCatch from './src/try-catch';
 
 
-const build = async (
+const build = (
   context = process.cwd(),
 ) => {
   tryCatch(

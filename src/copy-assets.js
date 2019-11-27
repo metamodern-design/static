@@ -12,7 +12,7 @@ const copyAssets = async (fromPath, toPath) => {
       pathResolve(toPath),
     );
   }
-  
+
   return Promise.resolve([]);
 };
 

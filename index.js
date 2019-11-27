@@ -1,13 +1,15 @@
-import importContent from './src/import-content';
-import importData from './src/import-data';
-import mapToObject from './src/map-to-object';
+import buildCss from './src/build-css';
+import buildHtml from './src/build-html';
+import buildJs from './src/build-js';
 
-const context = process.cwd();
 
-const content = mapToObject(importContent(context));
+const build = async () => {
+  const context = process.cwd();
 
-const data = mapToObject(importData(context));
+  await buildHtml(context);
+  await buildCss(context);
+  await buildJs(context);
+};
 
-const locals = { content, ...data };
 
-export default locals;
+export default build;

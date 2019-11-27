@@ -9,7 +9,7 @@ const compileRouteMap = async (
   publicUrl = '',
 ) => {
   const routeMap = routes.map(
-    ({ routeUrl, entryPath }) => [
+    async ({ routeUrl, entryPath }) => [
       path.join(publicUrl, routeUrl),
       await renderTemplate(entryPath, locals, options),
     ],

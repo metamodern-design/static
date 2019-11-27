@@ -1,3 +1,5 @@
+import path from 'path';
+import fs from 'fs-extra';
 import { rollup } from 'rollup';
 import babel from 'rollup-plugin-babel';
 import commonjs from 'rollup-plugin-commonjs';

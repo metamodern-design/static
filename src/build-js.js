@@ -34,7 +34,7 @@ const buildJs = async (context, {
           nodeResolve(),
           commonjs(),
           ...rollupPlugins,
-          replace({ 
+          replace({
             'process.env.NODE_ENV': JSON.stringify('production'),
           }),
           babel({

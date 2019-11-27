@@ -63,8 +63,8 @@ const buildHtml = async (context, {
 
   if (dataMap.has('routes')) {
     const publicUrl = (
-      data.has('meta')
-        ? data.get('meta').publicUrl
+      dataMap.has('meta')
+        ? dataMap.get('meta').publicUrl
         : ''
     );
 

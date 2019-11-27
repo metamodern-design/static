@@ -28,7 +28,10 @@ const buildCss = async (context, {
   const stylesDir = path.resolve(context, src, styles);
 
   if (!(await fs.pathExists(stylesDir))) {
-    await copyAssets(styles, [context, styles]);
+    await copyAssets(
+      [__dirname, '../assets/styles'],
+      stylesDir,
+    );
   }
 
   const fileResults = listFiles(stylesDir, {

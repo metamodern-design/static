@@ -1,19 +1,29 @@
+import { rollup } from 'rollup';
+import babel from 'rollup-plugin-babel';
+import commonjs from 'rollup-plugin-commonjs';
+import nodeResolve from 'rollup-plugin-node-resolve';
+import replace from 'rollup-plugin-replace';
+import { terser } from 'rollup-plugin-terser';
+import babelConfig from './babel.config';
+
+
 const buildJs = async (context, {
   name = 'index',
   dist = 'dist',
   src = 'src',
   scripts = 'scripts',
-  babelOptions = babelConfig,
   external = [],
   format = 'iife',
   includeDefaultPlugins = true,
   inputOptions = {},
   outputOptions = {},
   rollupPlugins = [],
+  babelOptions = {},
+  babelPlugins = babelConfig.plugins,
+  babelPresets = babelConfig.presets,
 } = {}) => {
   const scriptsDir = path.resolve(context, src, scripts);
   const entryPath = path.resolve(scriptsDir, `${name}.js`);
-
   
   if (await fs.pathExists(entryPath)) {
     const plugins = (

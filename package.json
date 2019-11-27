@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "@arr/reduce": "^1.0.1",
+    "@iarna/toml": "^2.2.3",
     "@metamodern/design-system": "^0.1.0",
     "camelcase": "^5.3.1",
     "cpy": "^7.3.0",

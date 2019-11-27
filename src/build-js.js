@@ -24,7 +24,7 @@ const buildJs = async (context, {
 } = {}) => {
   const scriptsDir = path.resolve(context, src, scripts);
   const entryPath = path.resolve(scriptsDir, `${name}.js`);
-  
+
   if (await fs.pathExists(entryPath)) {
     const plugins = (
       includeDefaultPlugins
@@ -38,14 +38,14 @@ const buildJs = async (context, {
         ]
         : rollupPlugins
     );
-  
+
     const bundle = await rollup({
       input: entryPath,
       external,
       plugins,
       ...inputOptions,
     });
-  
+
     await bundle.write({
       file: path.resolve(context, dist, `${name}.js`),
       format,

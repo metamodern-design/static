@@ -16,9 +16,9 @@ const renderTemplate = async (
     ['jstl', renderJstl(locals)],
     ['pug', renderPug(locals)],
   ]);
-  
+
   return readFile(entryPath, parser, options);
 };
-  
+
 
 export default renderTemplate;

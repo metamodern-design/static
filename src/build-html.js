@@ -41,12 +41,12 @@ const buildHtml = async (context, {
   const contentMap = await readContent(context);
   const dataMap = await readData(context);
 
-  const locals = { 
+  const locals = {
     content: mapToObject(contentMap),
     ...mapToObject(dataMap),
   };
 
-  const options = { 
+  const options = {
     basedir: templatesDir,
   };
 
@@ -60,21 +60,21 @@ const buildHtml = async (context, {
     [context, dist, `${name}.html`],
     htmlString,
   );
-  
+
   if (dataMap.has('routes')) {
     const publicUrl = (
       data.has('meta')
         ? data.get('meta').publicUrl
         : ''
     );
-    
+
     const jsString = await compileRouteMap(
       dataMap.get('routes'),
       locals,
       options,
       publicUrl,
     );
-    
+
     await writeFile(
       [context, src, '.metamodern/route-map.js'],
       jsString,

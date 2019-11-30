@@ -16,7 +16,9 @@ const listFiles = async (context, {
       : `${name}${postfix}`
   );
 
-  const results = await globby(globs, { cwd: context });
+  const results = [].concat(
+    await globby(globs, { cwd: context }),
+  );
 
   return (
     relative

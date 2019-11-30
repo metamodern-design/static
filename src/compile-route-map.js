@@ -9,6 +9,7 @@ const compileRouteMap = async (
   options = {},
   publicUrl = '',
 ) => {
+  console.log(routes);
   const routeMap = routes.map(tryCatch(
     async ({ url, template }) => [
       path.join(publicUrl, url),

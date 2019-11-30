@@ -15,6 +15,9 @@ const listFiles = async (context, {
       ? [].concat(extensions).map((ext) => `${prefix}${name}.${ext}`)
       : `${name}${postfix}`
   );
+  
+  console.log(context);
+  console.log(globs);
 
   const results = await globby(globs, { cwd: context });
 

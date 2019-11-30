@@ -1,0 +1,19 @@
+/* A GRID CELL WITH SIZING FOR SPECIFIC CONTENT SECTIONS */
+
+.cell:not(.auto)
+  @apply w-full
+  
+.cell:not(.no-padding)
+  @apply p-1b
+
+.cell.flex-square
+  @apply max-w-5c
+
+
+@screen c11
+  .cell.flex-square
+    @apply min-h-5c
+
+@screen c18
+  .cell.flex-half
+    @apply w-half

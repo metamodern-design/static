@@ -1,0 +1,25 @@
+/* SPACING FOR CONTENT SECTIONS */
+
+section
+  @apply w-full
+  @apply mb-2b
+
+section > p:not(:last-child),
+section > ul:not(:last-child)
+  @apply mb-1b
+  
+section > header
+  @apply px-1b
+  @apply pb-2b
+  
+section > header > p:not(:first-child)
+  @apply mt-half-b
+
+
+@screen c11
+  section
+    @apply mb-3b
+
+@screen c18
+  section
+    @apply mb-4b

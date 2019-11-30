@@ -1,0 +1,53 @@
+/* NAVBAR */
+
+nav
+  @apply w-screen
+  @apply bg-dark
+  
+nav ul
+  @apply w-full
+  @apply flex
+  @apply items-center
+  @apply justify-center
+  @apply min-h-two-and-half-b
+  @apply border-b
+  @apply border-light
+
+nav li > a,
+nav li > button
+  @apply px-1b
+  @apply border-b-2
+  @apply border-transparent
+  @apply font-700
+  @apply text-xs
+  @apply leading-base-wide
+  @apply tracking-wide
+  @apply uppercase
+
+nav li > a,
+nav li > a:visited,
+nav li > button
+  @apply text-light
+  
+nav li > a.active,
+nav li > button.active
+  @apply border-lighter
+
+nav li > a.active,
+nav li > button.active
+  @apply text-lighter
+
+
+@screen c11
+  nav li > a,
+  nav li > button
+    @apply px-one-and-half-b
+    @apply text-sm
+    @apply leading-lg-wide
+
+@screen c18
+  nav li > a,
+  nav li > button
+    @apply px-2b
+    @apply text-base
+    @apply leading-xl-wide

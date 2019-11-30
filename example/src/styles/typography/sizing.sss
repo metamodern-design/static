@@ -1,0 +1,76 @@
+/* RELATIVE SIZING */
+
+.larger
+  font-size: 1.236em
+
+.smaller
+  font-size: 0.809em
+
+p.larger,
+p.smaller
+  line-height: 1.618
+
+p.narrower,
+p.larger.narrower,
+p.smaller.narrower
+  line-height: 1.236
+
+p.wider,
+p.larger.wider,
+p.smaller.wider
+  line-height: 2
+  
+
+/* ABSOLUTE SIZING */
+
+.narrow
+  @apply leading-base-narrow
+
+.sm
+  @apply text-sm
+  @apply leading-sm
+
+.sm.narrow
+  @apply leading-sm-narrow
+
+
+/* RESPONSIVE SIZING */
+
+.scale-text
+  @apply text-sm
+  @apply leading-sm
+
+.scale-text.narrow
+  @apply leading-sm-narrow
+
+
+@screen c11
+  .scale-text:not(.sm)
+    @apply text-base
+    @apply leading-base
+  .scale-text.narrow:not(.sm)
+    @apply leading-base-narrow
+
+@screen c18
+  .scale-text.sm
+    @apply text-base
+    @apply leading-base
+  .scale-text.sm.narrow
+    @apply leading-base-narrow
+  .scale-text.lg
+    @apply text-lg
+    @apply leading-lg
+  .scale-text.lg.narrow
+    @apply leading-lg-narrow
+
+@screen c25
+  .scale-text:not(.sm)
+    @apply text-lg
+    @apply leading-lg
+  .scale-text.narrow:not(.sm)
+    @apply leading-lg-narrow
+  .scale-text.lg:not(.sm)
+    @apply text-xl
+    @apply leading-xl
+  .scale-text.lg.narrow:not(.sm)
+    @apply leading-xl-narrow

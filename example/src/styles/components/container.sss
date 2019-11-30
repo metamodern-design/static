@@ -1,0 +1,18 @@
+/* REPLACES TAILWIND'S RESPONSIVE CONTAINER */
+
+.container
+  @apply w-full
+  @apply max-w-10c
+  @apply mx-auto
+  @apply flex
+  @apply flex-col
+  @apply items-center
+
+
+@screen c18
+  .container
+    @apply max-w-15c
+
+@screen c25
+  .container
+    @apply max-w-20c

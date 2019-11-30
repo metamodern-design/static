@@ -1,0 +1,8 @@
+.container
+  ul(role='tablist')
+    each route in routes
+      li
+        button(
+          role='tab'
+          data-url=`${meta.publicUrl}${route.url}`.replace('//', '/')
+        )= route.label

@@ -1,0 +1,23 @@
+doctype html
+html(lang='en')
+  
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    meta(name='viewport' content='width=device-width')
+    meta(name='format-detection' content='email=no')
+    title= meta.title
+    meta(name='description' content=meta.description)
+    link(rel='stylesheet' href=`${meta.publicUrl}index.css`)
+    include /favicons.pug
+    
+  body
+    header#pageHeader
+      include /header.pug
+    nav#pageNav
+      include /nav.pug
+    main#pageMain
+      include /main.pug
+    footer#pageFooter
+      include /footer.pug
+    script(src=`${meta.publicUrl}index.js`)

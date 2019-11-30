@@ -1,8 +1,10 @@
 const tryCatch = async (call, msg) => {
   try {
-    await call();
+    const result = await call();
+    return result || 0;
   } catch (err) {
     console.error(msg(err));
+    return 1;
   }
 };
 

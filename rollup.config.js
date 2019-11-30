@@ -21,7 +21,7 @@ export default [
     input: 'cli.js',
     external: Object.keys(pkg.dependencies),
     output: [
-      { file: pkg.bin['static-build'], format: 'cjs' },
+      { file: pkg.cli, format: 'cjs' },
     ],
     plugins: [
       preserveShebangs(),

@@ -24,9 +24,9 @@ export default [
       { file: pkg.bin['static-build'], format: 'cjs' },
     ],
     plugins: [
+      preserveShebangs(),
       nodeResolve(),
       commonjs(),
-      preserveShebangs(),
     ],
   },
 ];

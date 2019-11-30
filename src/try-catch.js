@@ -1,6 +1,6 @@
-const tryCatch = (call, msg) => {
+const tryCatch = async (call, msg) => {
   try {
-    call();
+    await call();
   } catch (err) {
     console.error(msg(err));
   }

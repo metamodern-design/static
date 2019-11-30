@@ -70,12 +70,12 @@ const buildHtml = async (context, {
         : ''
     );
 
-    const jsString = await compileRouteMap(
-      dataMap.get('routes'),
+    const jsString = await compileRouteMap(dataMap.get('routes'), {
       locals,
       options,
       publicUrl,
-    );
+      templatesDir,
+    });
 
     await writeFile(
       [context, src, '.metamodern/route-map.js'],

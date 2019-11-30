@@ -3,18 +3,16 @@ import renderTemplate from './render-template';
 import tryCatch from './try-catch';
 
 
-const compileRouteMap = async (
-  routes,
+const compileRouteMap = async (routes, {
   locals = {},
   options = {},
   publicUrl = '',
-) => {
-  console.log(routes);
-  
+  templatesDir = '',
+}) => {
   const parseEntry = ({ url, template }) => tryCatch(
     async () => [
       path.join(publicUrl, url),
-      await renderTemplate(template, locals, options),
+      await renderTemplate([templatesDir, template], locals, options),
     ],
     (err) => `Invalid route map: ${err}`,
   );

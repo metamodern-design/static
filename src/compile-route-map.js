@@ -10,13 +10,15 @@ const compileRouteMap = async (
   publicUrl = '',
 ) => {
   console.log(routes);
-  const routeMap = routes.map(tryCatch(
-    async ({ url, template }) => [
-      path.join(publicUrl, url),
-      await renderTemplate(template, locals, options),
-    ],
-    (err) => `Invalid route map: ${err}`,
-  ));
+  const routeMap = routes.map(
+    async ({ url, template }) => tryCatch(
+      () => [
+        path.join(publicUrl, url),
+        await renderTemplate(template, locals, options),
+      ],
+      (err) => `Invalid route map: ${err}`,
+    ),
+  );
 
   return [
     `const routeMap = new Map(${JSON.stringify(routeMap)});`,

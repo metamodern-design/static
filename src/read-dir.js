@@ -14,7 +14,6 @@ const readDir = async (
     recursive = false,
   } = {},
 ) => {
-  console.log(pathResolve(context));
   const extensions = (
     readAllFiles
       ? []
@@ -24,6 +23,7 @@ const readDir = async (
     pathResolve(context),
     { extensions, recursive },
   );
+  console.log(filepaths);
   const parsed = await Promise.all(
     filepaths.map(
       (fp) => readFile(fp, parsers[pathExt(fp)]),

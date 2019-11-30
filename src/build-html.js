@@ -20,7 +20,7 @@ const buildHtml = async (context, {
 
   throwIf(
     !(await fs.pathExists(templatesDir)),
-    () => `Looking for entry template, but ${templatesDir} does not exist`,
+    `Looking for entry template, but ${templatesDir} does not exist`,
   );
 
   const fileResults = listFiles(templatesDir, {
@@ -30,12 +30,12 @@ const buildHtml = async (context, {
 
   throwIf(
     fileResults.length === 0,
-    () => `No entry file named "${name}.html", "${name}.jstl", or "${name}.pug" was found in ${templatesDir}`,
+    `No entry file named "${name}.html", "${name}.jstl", or "${name}.pug" was found in ${templatesDir}`,
   );
 
   throwIf(
     fileResults.length > 1,
-    () => `Multiple entry files named "${name}" were found in ${templatesDir}. Rename each one that is not the entry template.`,
+    `Multiple entry files named "${name}" were found in ${templatesDir}. Rename each one that is not the entry template.`,
   );
 
   const contentMap = await readContent(context);

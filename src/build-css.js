@@ -41,7 +41,7 @@ const buildCss = async (context, {
 
   throwIf(
     fileResults.length > 1,
-    () => `Multiple entry files named "${name}" were found in ${stylesDir}. Rename each one that is not the entry stylesheet.`,
+    `Multiple entry files named "${name}" were found in ${stylesDir}. Rename each one that is not the entry stylesheet.`,
   );
 
   const buildCache = path.resolve(context, '.metamodern');

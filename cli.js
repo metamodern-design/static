@@ -1,17 +1,11 @@
 #!/usr/bin/env node
 
-import meow from 'meow';
+import mri from 'mri';
 import index from './index';
 
 
 (() => {
-  const cli = meow(`
-    Usage
-      $ npx metamodern-static <path>
- 
-    Examples
-      $ npx metamodern-static ./projects/my-site/
-  `);
+  const cliArgs = mri(process.argv.slice(2));
 
-  index(cli.input[0]);
+  index(cliArgs._[0]);
 })();

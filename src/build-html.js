@@ -40,7 +40,7 @@ const buildHtml = async (context, {
 
   const contentMap = await readContent(context);
   const dataMap = await readData(context);
-  console.log(JSON.stringify(dataMap));
+  console.log(JSON.stringify(mapToObject(dataMap)));
 
   const locals = {
     content: mapToObject(contentMap),

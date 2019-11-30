@@ -59,6 +59,8 @@ const buildCss = async (context, {
         recursive: true,
       })).map((fp) => path.relative(buildCache, fp)),
   );
+  
+  console.log(importsList);
 
   await writeFile(
     entryPath,

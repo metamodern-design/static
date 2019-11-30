@@ -39,7 +39,7 @@
     "globby": "^10.0.1",
     "html-minifier": "^4.0.0",
     "markdown-it": "^10.0.0",
-    "meow": "^5.0.0",
+    "mri": "^1.1.4",
     "postcss": "^7.0.23",
     "postcss-easy-import": "^3.0.0",
     "postcss-preset-env": "^6.7.0",

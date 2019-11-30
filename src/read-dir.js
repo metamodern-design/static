@@ -14,6 +14,7 @@ const readDir = async (
     recursive = false,
   } = {},
 ) => {
+  console.log(pathResolve(context));
   const extensions = (
     readAllFiles
       ? []

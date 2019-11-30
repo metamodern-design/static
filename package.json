@@ -61,6 +61,7 @@
     "eslint-plugin-types": "^1.0.2",
     "esm": "^3.2.25",
     "np": "^5.0.3",
+    "rollup-plugin-preserve-shebangs": "^0.1.2",
     "updtr": "^3.1.0"
   },
   "engines": {

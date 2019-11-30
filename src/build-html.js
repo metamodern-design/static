@@ -23,7 +23,7 @@ const buildHtml = async (context, {
     `Looking for entry template, but ${templatesDir} does not exist`,
   );
 
-  const fileResults = listFiles(templatesDir, {
+  const fileResults = await listFiles(templatesDir, {
     name,
     extensions: ['html', 'jstl', 'pug'],
   });

@@ -34,7 +34,7 @@ const buildCss = async (context, {
     );
   }
 
-  const fileResults = listFiles(stylesDir, {
+  const fileResults = await listFiles(stylesDir, {
     name,
     extensions: ['css', 'sss'],
   });
@@ -54,10 +54,10 @@ const buildCss = async (context, {
       : [],
     fileResults.length === 1
       ? path.relative(buildCache, fileResults[0])
-      : listFiles(stylesDir, {
+      : (await listFiles(stylesDir, {
         extensions: ['css', 'sss'],
         recursive: true,
-      }).map((fp) => path.relative(buildCache, fp)),
+      })).map((fp) => path.relative(buildCache, fp)),
   );
 
   await writeFile(

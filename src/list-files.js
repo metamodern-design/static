@@ -1,5 +1,5 @@
-import path from 'path';
 import globby from 'globby';
+import pathResolve from './path-resolve';
 
 
 const listFiles = async (context, {
@@ -15,16 +15,16 @@ const listFiles = async (context, {
       ? [].concat(extensions).map((ext) => `${prefix}${name}.${ext}`)
       : `${name}${postfix}`
   );
-  
-  console.log(context);
-  console.log(globs);
 
-  const results = await globby(globs, { cwd: context });
+  const results = await globby(
+    globs,
+    { cwd: pathResolve(context) },
+  );
 
   return (
     relative
       ? results
-      : results.map((filename) => path.resolve(context, filename))
+      : results.map((filename) => pathResolve([].concat(context, filename)))
   );
 };
 

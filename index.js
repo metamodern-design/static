@@ -9,7 +9,6 @@ const index = (
   context = process.cwd(),
 ) => tryCatch(
   async () => {
-    console.log(context);
     await buildHtml(context);
     await Promise.all([
       buildCss(context),

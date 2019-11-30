@@ -14,6 +14,8 @@ const buildHtml = async (context, {
   name = 'index',
   dist = 'dist',
   src = 'src',
+  content = 'content',
+  data = 'data',
   templates = 'templates',
 } = {}) => {
   const templatesDir = path.resolve(context, src, templates);
@@ -38,8 +40,8 @@ const buildHtml = async (context, {
     `Multiple entry files named "${name}" were found in ${templatesDir}. Rename each one that is not the entry template.`,
   );
 
-  const contentMap = await readContent(context);
-  const dataMap = await readData(context);
+  const contentMap = await readContent([context, src, content]);
+  const dataMap = await readData([context, src, data]);
   console.log(JSON.stringify(mapToObject(dataMap)));
 
   const locals = {

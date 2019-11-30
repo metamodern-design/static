@@ -3,7 +3,7 @@ import renderMd from './render-md';
 
 
 const readContent = (context) => readDir(
-  [context, 'content'],
+  context,
   {
     md: renderMd,
     txt: (str) => str,

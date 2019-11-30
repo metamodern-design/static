@@ -7,7 +7,7 @@ const tryCatch = async (call, msg) => {
     return result || 0;
   } catch (err) {
     const newErr = new Error(msg(err));
-    console.error(cleanStack(error.stack));
+    console.error(cleanStack(newErr.stack));
     return 1;
   }
 };

@@ -10,14 +10,17 @@ const compileRouteMap = async (
   publicUrl = '',
 ) => {
   console.log(routes);
-  const routeMap = routes.map(
-    async ({ url, template }) => tryCatch(
-      () => [
-        path.join(publicUrl, url),
-        await renderTemplate(template, locals, options),
-      ],
-      (err) => `Invalid route map: ${err}`,
-    ),
+  
+  const parseEntry = ({ url, template }) => tryCatch(
+    async () => [
+      path.join(publicUrl, url),
+      await renderTemplate(template, locals, options),
+    ],
+    (err) => `Invalid route map: ${err}`,
+  );
+  
+  const routeMap = await Promise.all(
+    routes.map(parseEntry),
   );
 
   return [

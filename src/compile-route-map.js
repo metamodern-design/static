@@ -1,5 +1,6 @@
 import path from 'path';
 import renderTemplate from './render-template';
+import tryCatch from './try-catch';
 
 
 const compileRouteMap = async (

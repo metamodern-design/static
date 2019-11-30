@@ -20,6 +20,7 @@
   "scripts": {
     "prebuild": "del dist/*",
     "build": "rollup -c",
+    "cli": "chmod +x dist/cli.js && dist/cli.js",
     "lint": "eslint --fix *.js src",
     "release": "np",
     "sync": "git pull && git add . && git commit -m 'automated sync' && git push",

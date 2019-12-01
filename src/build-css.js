@@ -44,7 +44,7 @@ const buildCss = async (context, {
     `Multiple entry files named "${name}" were found in ${stylesDir}. Rename each one that is not the entry stylesheet.`,
   );
 
-  const buildCache = path.resolve(context, '.metamodern');
+  const buildCache = path.resolve(context, src, '.metamodern');
   const entryPath = path.resolve(buildCache, `${name}.sss`);
 
   const importsList = [].concat(

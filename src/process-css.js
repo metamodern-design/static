@@ -12,18 +12,15 @@ const processCss = async ({
 } = {}) => {
   const entryFile = await readFile(entryPath);
 
-  const cssString = await postcss(plugins).process(entryFile, {
+  const result = await postcss(plugins).process(entryFile, {
     parser,
     from: entryPath,
     to: outputPath,
   });
-  
-  console.log(entryFile);
-  console.log(cssString);
 
   await writeFile(
     outputPath,
-    cssString,
+    result.css,
   );
 };
 

@@ -4,7 +4,15 @@ import { preserveShebangs } from 'rollup-plugin-preserve-shebangs';
 import pkg from './package.json';
 
 
-export default [
+const plugins = [
+  nodeResolve({
+    preferBuiltins: true,
+  }),
+  commonjs(),
+];
+
+
+const rollupConfig = [
   {
     input: 'index.js',
     external: Object.keys(pkg.dependencies),
@@ -12,10 +20,7 @@ export default [
       { file: pkg.main, format: 'cjs' },
       { file: pkg.module, format: 'es' },
     ],
-    plugins: [
-      nodeResolve(),
-      commonjs(),
-    ],
+    plugins,
   },
   {
     input: 'cli.js',
@@ -25,8 +30,10 @@ export default [
     ],
     plugins: [
       preserveShebangs(),
-      nodeResolve(),
-      commonjs(),
+      ...plugins,
     ],
   },
 ];
+
+
+export default rollupConfig;

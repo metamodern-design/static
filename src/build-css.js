@@ -3,13 +3,12 @@ import cssnano from 'cssnano';
 import designSystem from '@metamodern/design-system';
 import easyImport from 'postcss-easy-import';
 import fs from 'fs-extra';
-import postcss from 'postcss';
 import presetEnv from 'postcss-preset-env';
-import sugarss from 'sugarss';
 import tailwindcss from 'tailwindcss';
 import browserslistConfig from './browserslist.config';
 import copyAssets from './copy-assets';
 import listFiles from './list-files';
+import processCss from './process-css';
 import throwIf from './throw-if';
 import writeFile from './write-file';
 
@@ -79,18 +78,11 @@ const buildCss = async (context, {
 
   const outputPath = path.resolve(context, dist, `${name}.css`);
 
-  const cssString = await postcss(plugins).process(entryPath, {
-    from: entryPath,
-    parser: sugarss,
-    to: outputPath,
-  });
-  
-  console.log(cssString);
-
-  await writeFile(
+  await processCss({
+    entryPath,
     outputPath,
-    cssString,
-  );
+    plugins,
+  });
 };
 
 

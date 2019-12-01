@@ -11,7 +11,7 @@ const processCss = async ({
   parser = sugarss,
 } = {}) => {
   const entryFile = await readFile(entryPath);
-  
+
   const cssString = await postcss(plugins).process(entryFile, {
     parser,
     from: entryPath,

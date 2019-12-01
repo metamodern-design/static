@@ -16,7 +16,7 @@ const compileRouteMap = async (routes, {
     ],
     (err) => `Invalid route map: ${err}`,
   );
-  
+
   const routeMap = await Promise.all(
     routes.map(parseEntry),
   );

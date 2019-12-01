@@ -2,7 +2,6 @@
 
 nav
   @apply w-screen
-  @apply bg-dark
   
 nav ul
   @apply w-full
@@ -11,7 +10,6 @@ nav ul
   @apply justify-center
   @apply min-h-two-and-half-b
   @apply border-b
-  @apply border-light
 
 nav li > a,
 nav li > button
@@ -24,18 +22,20 @@ nav li > button
   @apply tracking-wide
   @apply uppercase
 
-nav li > a,
-nav li > a:visited,
-nav li > button
-  @apply text-light
+/*
+  nav li > a,
+  nav li > a:visited,
+  nav li > button
+    @apply text-light
+    
+  nav li > a.active,
+  nav li > button.active
+    @apply border-lighter
   
-nav li > a.active,
-nav li > button.active
-  @apply border-lighter
-
-nav li > a.active,
-nav li > button.active
-  @apply text-lighter
+  nav li > a.active,
+  nav li > button.active
+    @apply text-lighter
+*/
 
 
 @screen c11

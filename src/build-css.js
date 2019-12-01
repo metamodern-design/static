@@ -59,8 +59,6 @@ const buildCss = async (context, {
         recursive: true,
       })).map((fp) => path.relative(buildCache, fp)),
   );
-  
-  console.log(importsList);
 
   await writeFile(
     entryPath,
@@ -86,6 +84,8 @@ const buildCss = async (context, {
     parser: sugarss,
     to: outputPath,
   });
+  
+  console.log(cssString.slice(0, 100));
 
   await writeFile(
     outputPath,

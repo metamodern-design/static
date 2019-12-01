@@ -5,7 +5,7 @@ import copyAssets from './src/copy-assets';
 import tryCatch from './src/try-catch';
 
 
-const index = (
+const index = async (
   context = process.cwd(),
 ) => tryCatch(
   async () => {

@@ -41,6 +41,7 @@ const buildJs = async (context, {
             plugins: babelPlugins,
             presets: babelPresets,
             ...babelOptions,
+            exclude: [].concat(/\/core-js\//, babelOptions.exclude || []),
           }),
           terser(),
         ]

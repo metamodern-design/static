@@ -8,8 +8,8 @@ const processCss = async ({
   entryPath,
   outputPath,
   plugins,
-  parser: sugarss,
-}) => {
+  parser = sugarss,
+} = {}) => {
   const entryFile = await readFile(entryPath);
   
   const cssString = await postcss(plugins).process(entryFile, {

@@ -17,6 +17,9 @@ const processCss = async ({
     from: entryPath,
     to: outputPath,
   });
+  
+  console.log(entryFile);
+  console.log(cssString);
 
   await writeFile(
     outputPath,

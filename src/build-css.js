@@ -85,7 +85,7 @@ const buildCss = async (context, {
     to: outputPath,
   });
   
-  console.log(cssString.slice(0, 100));
+  console.log(cssString);
 
   await writeFile(
     outputPath,

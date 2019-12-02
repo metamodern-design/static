@@ -12,10 +12,10 @@ const plugins = [
 ];
 
 
-const external = [
-  'path',
-  ...Object.keys(pkg.dependencies),
-];
+const external = [].concat(
+  'path'
+  Object.keys(pkg.dependencies),
+);
 
 
 const rollupConfig = [
@@ -31,7 +31,6 @@ const rollupConfig = [
   {
     external,
     input: 'cli.js',
-    external: Object.keys(pkg.dependencies),
     output: [
       { file: pkg.cli, format: 'cjs' },
     ],

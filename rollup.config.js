@@ -13,7 +13,7 @@ const plugins = [
 
 
 const external = [].concat(
-  'path'
+  'path',
   Object.keys(pkg.dependencies),
 );
 

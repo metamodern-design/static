@@ -5,9 +5,7 @@ import pkg from './package.json';
 
 
 const plugins = [
-  nodeResolve({
-    preferBuiltins: true,
-  }),
+  nodeResolve(),
   commonjs(),
 ];
 

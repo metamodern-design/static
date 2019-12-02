@@ -2,6 +2,7 @@ import path from 'path';
 import test from 'ava';
 import listFiles from '../src/list-files';
 import minifyHtml from '../src/minify-html';
+import pathExt from '../src/path-ext';
 import pathCamelize from '../src/path-camelize';
 import readDir from '../src/read-dir';
 import readFile from '../src/read-file';
@@ -12,6 +13,18 @@ import renderPug from '../src/render-pug';
 
 const contentPath = path.resolve(__dirname, './fixtures/content');
 const templatePath = path.resolve(__dirname, './fixtures/templates');
+
+
+test('pathExt', (t) => {
+  t.is(
+    pathExt('/this/that/the-other-thing.js'),
+    'js',
+  );
+  t.is(
+    pathExt(['/this/that/','the-other-thing.js']),
+    'js',
+  );
+});
 
 
 test('pathCamelize', (t) => {
@@ -29,6 +42,10 @@ test('pathCamelize', (t) => {
   );
   t.is(
     pathCamelize('/this/that/the-other-thing.js', 10),
+    'thisThatTheOtherThing',
+  );
+  t.is(
+    pathCamelize(['/this/that/','the-other-thing.js'], 10),
     'thisThatTheOtherThing',
   );
 });

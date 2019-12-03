@@ -1,3 +1,4 @@
+import flatten from '@arr/flatten';
 import buildCss from './src/build-css';
 import buildHtml from './src/build-html';
 import buildJs from './src/build-js';
@@ -7,28 +8,31 @@ import tryCatch from './src/try-catch';
 
 const index = async (
   context = process.cwd(),
-) => tryCatch(
-  async () => {
-    await buildHtml(context);
-    await Promise.all([
-      buildCss(context),
-      buildJs(context),
-      copyAssets(
-        [context, 'src/files'],
-        [context, 'dist'],
-      ),
-      copyAssets(
-        [context, 'src/fonts'],
-        [context, 'dist/fonts'],
-      ),
-      copyAssets(
-        [context, 'src/media'],
-        [context, 'dist/media'],
-      ),
-    ]);
-  },
-  (err) => `Build failed: ${err}`,
-);
+  options = {},
+) => {
+  const postcss = options.postcss || {};
+  const rollup = options.rollup || {};
+  
+  return tryCatch(
+    async () => {
+      const htmlOut = await buildHtml(context, options);
+      const assetsOut = await Promise.all([
+        buildCss(context, {
+          ...options,
+          ...postcss,
+        }),
+        buildJs(context, {
+          ...options,
+          ...rollup,
+        }),
+        copyAssets(context, options),
+      ]);
+      
+      return flatten([htmlOut, assetsOut]);
+    },
+    (err) => `Build failed: ${err}`,
+  );
+};
 
 
 export default index;

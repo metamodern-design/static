@@ -57,11 +57,10 @@ const buildHtml = async (context, {
     locals,
     options,
   );
+  
+  const outputPath = path.resolve(context, dist, `${name}.html`);
 
-  await writeFile(
-    [context, dist, `${name}.html`],
-    htmlString,
-  );
+  await writeFile(outputPath, htmlString);
 
   if (dataMap.has('routes')) {
     const publicUrl = (
@@ -82,6 +81,8 @@ const buildHtml = async (context, {
       jsString,
     );
   }
+  
+  return outputPath;
 };
 
 

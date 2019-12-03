@@ -18,10 +18,11 @@ const buildCss = async (context, {
   dist = 'dist',
   src = 'src',
   styles = 'styles',
+  designSystemConfig = {},
   external = [],
   includeDefaultPlugins = true,
   postcssPlugins = [],
-  tailwindConfig = designSystem(),
+  tailwindConfig = designSystem(designSystemConfig),
   targetBrowsers = browserslistConfig.join(', '),
 } = {}) => {
   const stylesDir = path.resolve(context, src, styles);
@@ -83,6 +84,8 @@ const buildCss = async (context, {
     outputPath,
     plugins,
   });
+  
+  return outputPath;
 };
 
 

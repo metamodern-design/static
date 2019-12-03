@@ -5,12 +5,22 @@ import mri from 'mri';
 import index from './index';
 
 
-(() => {
+(async () => {
   const cliArgs = mri(process.argv.slice(2));
   const context = path.resolve(
     process.cwd(),
     cliArgs._[0] || '',
   );
 
-  index(context);
+  const configPath = path.resolve(context, 'metamodern.config.js');
+  
+  const config = (
+    await fs.pathExists(configPath)
+      ? await import(configPath)
+      : {}
+  );
+
+  const outputPaths = await index(context, config);
+  
+  console.log(`Files generated:\n${outputPaths.join('\n')}`);
 })();

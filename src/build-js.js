@@ -26,6 +26,7 @@ const buildJs = async (context, {
 } = {}) => {
   const scriptsDir = path.resolve(context, src, scripts);
   const entryPath = path.resolve(scriptsDir, `${name}.js`);
+  const outputPath = path.resolve(context, dist, `${name}.js`);
 
   if (await fs.pathExists(entryPath)) {
     const plugins = (
@@ -48,8 +49,6 @@ const buildJs = async (context, {
         : rollupPlugins
     );
 
-    const outputPath = path.resolve(context, dist, `${name}.js`);
-
     await processJs({
       entryPath,
       external,
@@ -59,9 +58,11 @@ const buildJs = async (context, {
       outputOptions,
       plugins,
     });
+    
+    return outputPath;
   }
 
-  return outputPath;
+  return [];
 };
 
 

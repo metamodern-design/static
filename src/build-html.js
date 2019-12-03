@@ -19,6 +19,7 @@ const buildHtml = async (context, {
   templates = 'templates',
 } = {}) => {
   const templatesDir = path.resolve(context, src, templates);
+  const outputPath = path.resolve(context, dist, `${name}.html`);
 
   throwIf(
     !(await fs.pathExists(templatesDir)),
@@ -57,8 +58,6 @@ const buildHtml = async (context, {
     locals,
     options,
   );
-
-  const outputPath = path.resolve(context, dist, `${name}.html`);
 
   await writeFile(outputPath, htmlString);
 

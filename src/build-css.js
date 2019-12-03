@@ -26,6 +26,7 @@ const buildCss = async (context, {
   targetBrowsers = browserslistConfig.join(', '),
 } = {}) => {
   const stylesDir = path.resolve(context, src, styles);
+  const outputPath = path.resolve(context, dist, `${name}.css`);
 
   if (!(await fs.pathExists(stylesDir))) {
     await copyAssets(
@@ -76,8 +77,6 @@ const buildCss = async (context, {
       ]
       : postcssPlugins
   );
-
-  const outputPath = path.resolve(context, dist, `${name}.css`);
 
   await processCss({
     entryPath,

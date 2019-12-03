@@ -8,7 +8,7 @@ const copyAssets = async (context, {
   dist = 'dist',
   assets = [],
 }) => {
-  const assetMap = new Map[
+  const assetMap = new Map([
     [
       path.resolve(context, src, 'files'),
       path.resolve(context, dist),
@@ -21,7 +21,7 @@ const copyAssets = async (context, {
       path.resolve(context, src, 'media'),
       path.resolve(context, dist, 'media'),
     ],
-  ];
+  ]);
   
   assets.forEach(([fromPath, toPath]) => {
     assetMap.set(

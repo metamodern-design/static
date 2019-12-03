@@ -22,20 +22,20 @@ const copyAssets = async (context, {
       path.resolve(context, dist, 'media'),
     ],
   ]);
-  
+
   assets.forEach(([fromPath, toPath]) => {
     assetMap.set(
       path.resolve(context, fromPath),
       path.resolve(context, dist, toPath),
     );
   });
-  
+
   const outputPaths = await Promise.all(
     [...assetMap.entries()].map(
       ([fromPath, toPath]) => copyDir(fromPath, toPath),
     ),
   );
-  
+
   return flatten(outputPaths);
 };
 

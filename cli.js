@@ -14,7 +14,7 @@ import index from './index';
   );
 
   const configPath = path.resolve(context, 'metamodern.config.js');
-  
+
   const config = (
     await fs.pathExists(configPath)
       ? await import(configPath)
@@ -22,6 +22,6 @@ import index from './index';
   );
 
   const outputPaths = await index(context, config);
-  
+
   console.log(`Files generated:\n${outputPaths.join('\n')}`);
 })();

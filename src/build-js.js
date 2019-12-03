@@ -58,7 +58,7 @@ const buildJs = async (context, {
       outputOptions,
       plugins,
     });
-    
+
     return outputPath;
   }
 

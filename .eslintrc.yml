@@ -10,8 +10,10 @@ env:
   node: true
 
 plugins:
-  - types
   - ava
+  - import
+  - types
+  
 
 rules:
   no-console: off

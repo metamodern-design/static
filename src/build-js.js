@@ -49,7 +49,7 @@ const buildJs = async (context, {
     );
 
     const outputPath = path.resolve(context, dist, `${name}.js`);
-    
+
     await processJs({
       entryPath,
       external,
@@ -60,7 +60,7 @@ const buildJs = async (context, {
       plugins,
     });
   }
-  
+
   return outputPath;
 };
 

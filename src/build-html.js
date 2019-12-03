@@ -57,7 +57,7 @@ const buildHtml = async (context, {
     locals,
     options,
   );
-  
+
   const outputPath = path.resolve(context, dist, `${name}.html`);
 
   await writeFile(outputPath, htmlString);
@@ -81,7 +81,7 @@ const buildHtml = async (context, {
       jsString,
     );
   }
-  
+
   return outputPath;
 };
 

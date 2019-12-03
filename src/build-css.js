@@ -84,7 +84,7 @@ const buildCss = async (context, {
     outputPath,
     plugins,
   });
-  
+
   return outputPath;
 };
 

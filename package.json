@@ -29,6 +29,7 @@
     "update": "updtr"
   },
   "dependencies": {
+    "@arr/flatten": "^1.0.1",
     "@arr/reduce": "^1.0.1",
     "@babel/core": "^7.7.4",
     "@babel/preset-env": "^7.7.4",

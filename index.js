@@ -12,7 +12,7 @@ const index = async (
 ) => {
   const postcss = options.postcss || {};
   const rollup = options.rollup || {};
-  
+
   return tryCatch(
     async () => {
       const htmlOut = await buildHtml(context, options);
@@ -27,7 +27,7 @@ const index = async (
         }),
         copyAssets(context, options),
       ]);
-      
+
       return flatten([htmlOut, assetsOut]);
     },
     (err) => `Build failed: ${err}`,

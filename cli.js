@@ -15,17 +15,17 @@ import tryCatch from './src/try-catch';
         process.cwd(),
         cliArgs._[0] || '',
       );
-    
+
       const configPath = path.resolve(context, 'metamodern.config.js');
-    
+
       const config = (
         await fs.pathExists(configPath)
           ? await import(configPath)
           : {}
       );
-    
+
       const outputPaths = await index(context, config);
-    
+
       console.log(`Files generated:\n${outputPaths.join('\n')}`);
     },
     (err) => `Build failed: ${err}`,

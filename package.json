@@ -1,6 +1,6 @@
 {
   "name": "@metamodern/static",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Build a next-gen static site with pre-rendered markup and bundled/minified assets",
   "author": "Daniel C. Narey <os@metamodern.design>",
   "license": "ISC",

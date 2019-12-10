@@ -8,8 +8,8 @@ import index from './index';
 import tryCatch from './src/try-catch';
 
 
-(() => {
-  tryCatch(
+(async () => {
+  process.exitCode = await tryCatch(
     async () => {
       const cliArgs = mri(process.argv.slice(2));
       const context = path.resolve(

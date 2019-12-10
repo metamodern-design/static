@@ -40,6 +40,7 @@
     "core-js": "^3.4.5",
     "cpy": "^7.3.0",
     "cssnano": "^4.1.10",
+    "esm-config": "^1.1.0",
     "fs-extra": "^8.1.0",
     "globby": "^10.0.1",
     "html-minifier": "^4.0.0",

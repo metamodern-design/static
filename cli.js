@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import path from 'path';
+import esmConfig from 'esm-config';
 import fs from 'fs-extra';
 import mri from 'mri';
 import index from './index';
@@ -20,7 +21,7 @@ import tryCatch from './src/try-catch';
 
       const config = (
         await fs.pathExists(configPath)
-          ? await import(configPath)
+          ? await esmConfig(configPath)
           : {}
       );
 

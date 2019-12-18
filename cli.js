@@ -28,7 +28,7 @@ import tryCatch from './src/try-catch';
       const outputPaths = await index(context, {
         skipHtml: Boolean(cliArgs.skipHtml),
         ...config,
-      );
+      });
 
       console.log(`Files generated:\n${outputPaths.join('\n')}`);
     },

@@ -16,7 +16,8 @@ test.beforeEach(async (t) => {
 
 
 test('build script generated the public files', async (t) => {
-  await index(example);
+  const built = await index(example);
+  console.log(built);
 
   t.true((await Promise.all([
     fs.exists(path.resolve(example, 'dist/index.html')),
@@ -29,7 +30,8 @@ test('build script generated the public files', async (t) => {
 
 
 test('skipHtml option', async (t) => {
-  await index(example, { skipHtml: true });
+  const built = await index(example, { skipHtml: true });
+  console.log(built);
 
   t.true((await Promise.all([
     fs.exists(path.resolve(example, 'dist/index.css')),

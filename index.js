@@ -10,7 +10,6 @@ const index = async (
   context = process.cwd(),
   options = {},
 ) => {
-  console.log(options);
   const postcss = options.postcss || {};
   const rollup = options.rollup || {};
 

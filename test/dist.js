@@ -32,4 +32,6 @@ test('skipHtml option', async (t) => {
     fs.exists(path.resolve(example, 'dist/media/logo.svg')),
     fs.exists(path.resolve(example, 'dist/404.html')),
   ])).every((x) => x));
+  
+  t.false(await fs.exists(path.resolve(example, 'dist/index.html')));
 });

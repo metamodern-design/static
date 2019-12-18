@@ -37,11 +37,10 @@ test('skipHtml option', async (t) => {
   console.log(built);
 
   t.true((await Promise.all([
+    fs.exists(path.resolve(example, 'dist/index.html')),
     fs.exists(path.resolve(example, 'dist/index.css')),
     fs.exists(path.resolve(example, 'dist/index.js')),
     fs.exists(path.resolve(example, 'dist/media/logo.svg')),
     fs.exists(path.resolve(example, 'dist/404.html')),
   ])).every((x) => x));
-  
-  t.false(await fs.exists(path.resolve(example, 'dist/index.html')));
 });

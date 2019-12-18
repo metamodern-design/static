@@ -8,8 +8,12 @@ import index from '../index';
 const example = path.resolve(__dirname, 'example');
 
 
-test('build script generated the public files', async (t) => {
+test.beforeEach(async (t) => {
   await del(`${example}/dist/*`);
+});
+
+
+test('build script generated the public files', async (t) => {
   await index(example);
 
   t.true((await Promise.all([
@@ -23,7 +27,6 @@ test('build script generated the public files', async (t) => {
 
 
 test('skipHtml option', async (t) => {
-  await del(`${example}/dist/*`);
   await index(example, { skipHtml: true });
 
   t.true((await Promise.all([

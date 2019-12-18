@@ -15,7 +15,12 @@ const index = async (
 
   return tryCatch(
     async () => {
-      const htmlOut = await buildHtml(context, options);
+      const htmlOut = (
+        options.skipHtml
+          ? []
+          : await buildHtml(context, options)
+      );
+
       const assetsOut = await Promise.all([
         buildCss(context, {
           ...options,

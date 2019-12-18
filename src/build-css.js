@@ -4,6 +4,7 @@ import designSystem from '@metamodern/design-system';
 import easyImport from 'postcss-easy-import';
 import fs from 'fs-extra';
 import presetEnv from 'postcss-preset-env';
+import purgecss from '@fullhuman/postcss-purgecss';
 import tailwindcss from 'tailwindcss';
 import browserslistConfig from './browserslist.config';
 import copyAssets from './copy-assets';
@@ -18,14 +19,18 @@ const buildCss = async (context, {
   dist = 'dist',
   src = 'src',
   styles = 'styles',
-  designSystemConfig = {},
+  templates = 'templates',
   external = [],
-  includeDefaultPlugins = true,
   postcssPlugins = [],
+  includeDefaultPlugins = true,
+  includeFullPalette = false,
+  designSystemConfig = { includeFullPalette },
   tailwindConfig = designSystem(designSystemConfig),
   targetBrowsers = browserslistConfig.join(', '),
+  usePurge = false,
 } = {}) => {
   const stylesDir = path.resolve(context, src, styles);
+  const templatesDir = path.resolve(context, src, templates);
   const outputPath = path.resolve(context, dist, `${name}.css`);
 
   if (!(await fs.pathExists(stylesDir))) {
@@ -65,17 +70,30 @@ const buildCss = async (context, {
     entryPath,
     importsList.map((fp) => `@import '${fp}'`).join('\n'),
   );
+  
+  const purgecssConfig = {
+    content: [
+      `${templatesDir}/**/*.html`,
+      `${templatesDir}/**/*.jstl`,
+      `${templatesDir}/**/*.pug`,
+    ],
+    defaultExtractor: (content) => content.match(/[\w-/:]+(?<!:)/g) || [],
+  };
 
   const plugins = (
     includeDefaultPlugins
-      ? [
+      ? [].concat(
         easyImport({ extensions: ['.css', '.sss'] }),
         tailwindcss(tailwindConfig),
-        ...postcssPlugins,
+        postcssPlugins,
+        usePurge ? purgecss(purgecssConfig) : [],
         presetEnv({ browsers: targetBrowsers }),
         cssnano({ preset: 'default' }),
-      ]
-      : postcssPlugins
+      )
+      : [].concat(
+        postcssPlugins,
+        usePurge ? purgecss(purgecssConfig) : [],
+      )
   );
 
   await processCss({

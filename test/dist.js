@@ -9,9 +9,12 @@ const example = path.resolve(__dirname, 'example');
 
 
 test.beforeEach(async (t) => {
-  const deleted = await del(`${example}/dist/*`);
-  
-  console.log(deleted);
+  await del(`${example}/dist/*`);
+});
+
+
+test.after(async (t) => {
+  await del(`${example}/dist/*`);
 });
 
 

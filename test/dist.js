@@ -8,19 +8,16 @@ import index from '../index';
 const example = path.resolve(__dirname, 'example');
 
 
-test.beforeEach(() => {
-  del.sync(`${example}/dist/*`);
-});
-
-
 test.after(async (t) => {
-  del.sync(`${example}/dist/*`);
+  del(path.resolve(example, dist1));
+  del(path.resolve(example, dist2));
 });
 
 
 test('build script generated the public files', async (t) => {
-  const built = await index(example);
-  console.log(built);
+  const built = await index(example, {
+    dist: 'dist1',
+  });
 
   t.true((await Promise.all([
     fs.exists(path.resolve(example, 'dist/index.html')),
@@ -33,8 +30,10 @@ test('build script generated the public files', async (t) => {
 
 
 test('skipHtml option', async (t) => {
-  const built = await index(example, { skipHtml: true });
-  console.log(built);
+  const built = await index(example, {
+    skipHtml: true,
+    dist: 'dist2',
+  });
 
   t.true((await Promise.all([
     fs.exists(path.resolve(example, 'dist/index.css')),

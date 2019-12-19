@@ -70,7 +70,7 @@ const buildCss = async (context, {
     entryPath,
     importsList.map((fp) => `@import '${fp}'`).join('\n'),
   );
-  
+
   const purgecssConfig = {
     content: [
       `${templatesDir}/**/*.html`,

@@ -72,7 +72,7 @@ const buildCss = async (context, {
       importsList.map((fp) => `@import '${fp}'`),
       includeDefaultPlugins
         ? '@tailwind utilities'
-        : []
+        : [],
     ).join('\n'),
   );
 

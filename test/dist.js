@@ -9,10 +9,7 @@ const example = path.resolve(__dirname, 'example');
 
 
 test.after(async (t) => {
-  await Promise.all([
-    del(path.resolve(example, 'dist1/**')),
-    del(path.resolve(example, 'dist2/**')),
-  ]);
+  await del(path.resolve(example, 'dist*'));
 });
 
 

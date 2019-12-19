@@ -68,7 +68,12 @@ const buildCss = async (context, {
 
   await writeFile(
     entryPath,
-    importsList.map((fp) => `@import '${fp}'`).join('\n'),
+    [].concat(
+      importsList.map((fp) => `@import '${fp}'`),
+      includeDefaultPlugins
+        ? '@tailwind utilities'
+        : []
+    ).join('\n'),
   );
 
   const purgecssConfig = {

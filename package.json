@@ -9,11 +9,11 @@
     "url": "https://github.com/metamodern-design/static"
   },
   "type": "module",
-  "main": "dist/main.js",
+  "main": "dist/main.cjs",
   "module": "dist/module.js",
-  "cli": "dist/cli.js",
+  "cli": "dist/cli.cjs",
   "bin": {
-    "metamodern-static": "dist/cli.js"
+    "metamodern-static": "dist/cli.cjs"
   },
   "files": [
     "dist"

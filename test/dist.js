@@ -9,8 +9,8 @@ const example = path.resolve(__dirname, 'example');
 
 
 test.after(async (t) => {
-  del(path.resolve(example, 'dist1'));
-  del(path.resolve(example, 'dist2'));
+  del(path.resolve(example, 'dist1/**'));
+  del(path.resolve(example, 'dist2/**'));
 });
 
 

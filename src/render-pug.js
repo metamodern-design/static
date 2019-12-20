@@ -1,10 +1,13 @@
 import pug from 'pug';
+import minifyHtml from './minify-html';
 
 
 const renderPug = (locals = {}) => (
   str,
   options = {},
-) => pug.render(str, { ...options, ...locals });
+) => minifyHtml(
+  pug.render(str, { ...options, ...locals }),
+);
 
 
 export default renderPug;

@@ -1,5 +1,5 @@
 import pug from 'pug';
-import minifyHtml from 'minify-html';
+import minifyHtml from './minify-html';
 
 
 const renderPug = (locals = {}) => (str, options = {}) => {

@@ -5,7 +5,6 @@ const minifyHtml = (
   str,
   options = {
     collapseWhitespace: true,
-    customAttrCollapse: /data-\w+/,
   },
 ) => htmlMinifier.minify(str, options);
 

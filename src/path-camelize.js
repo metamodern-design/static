@@ -3,10 +3,7 @@ import camelcase from 'camelcase';
 import pathResolve from './path-resolve';
 
 
-const pathCamelize = (
-  fp,
-  numDirs = 0,
-) => {
+const pathCamelize = (fp, numDirs = 0) => {
   const { dir, name } = path.parse(pathResolve(fp));
 
   return camelcase(

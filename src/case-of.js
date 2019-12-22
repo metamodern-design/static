@@ -1,7 +1,7 @@
-const caseOf = (x, kv, defaultValue) => {
+const caseOf = (x, kv, dflt) => {
   const mp = new Map(kv);
 
-  return mp.get(x) || defaultValue;
+  return mp.get(x) || dflt;
 };
 
 

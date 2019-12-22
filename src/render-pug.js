@@ -7,7 +7,7 @@ const renderPug = (locals = {}) => (str, options = {}) => {
     ...locals,
   });
 
-  return htmlString.replace(/\s+/g, ' ');
+  return minifyHtml(htmlString, {});
 };
 
 

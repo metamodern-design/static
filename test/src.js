@@ -21,7 +21,7 @@ test('pathExt', (t) => {
     'js',
   );
   t.is(
-    pathExt(['/this/that/','the-other-thing.js']),
+    pathExt(['/this/that/', 'the-other-thing.js']),
     'js',
   );
 });
@@ -45,7 +45,7 @@ test('pathCamelize', (t) => {
     'thisThatTheOtherThing',
   );
   t.is(
-    pathCamelize(['/this/that/','the-other-thing.js'], 10),
+    pathCamelize(['/this/that/', 'the-other-thing.js'], 10),
     'thisThatTheOtherThing',
   );
 });
@@ -62,7 +62,7 @@ test('listFiles', async (t) => {
       'something.txt',
     ].map((x) => path.resolve(contentPath, x)),
   );
-  
+
   t.deepEqual(
     await listFiles(contentPath, { extensions: 'md' }),
     [
@@ -71,7 +71,7 @@ test('listFiles', async (t) => {
       'post-3.md',
     ].map((x) => path.resolve(contentPath, x)),
   );
-  
+
   t.deepEqual(
     await listFiles(contentPath, { extensions: ['md', 'txt'] }),
     [
@@ -81,7 +81,7 @@ test('listFiles', async (t) => {
       'something.txt',
     ].map((x) => path.resolve(contentPath, x)),
   );
-  
+
   t.deepEqual(
     await listFiles(contentPath, { extensions: 'txt', recursive: true }),
     [
@@ -89,7 +89,7 @@ test('listFiles', async (t) => {
       'somedir/happy.txt',
     ].map((x) => path.resolve(contentPath, x)),
   );
-  
+
   t.deepEqual(
     await listFiles(
       contentPath,
@@ -128,7 +128,7 @@ test('readDir', async (t) => {
     [...mdOnly.keys()].sort(),
     ['post1', 'post2', 'post3'].sort(),
   );
-  
+
   const mdTxt = await readDir(
     contentPath,
     { md: renderMd, txt: (s) => s },
@@ -138,20 +138,20 @@ test('readDir', async (t) => {
     [...mdTxt.keys()].sort(),
     ['post1', 'post2', 'post3', 'something'].sort(),
   );
-  
+
   const noParsers = await readDir(contentPath);
-  
+
   t.deepEqual(
     [...noParsers.keys()].sort(),
     ['post1', 'post2', 'post3', 'random', 'something'].sort(),
   );
-  
+
   const allFiles = await readDir(
     contentPath,
     { txt: (s) => s },
     { readAllFiles: true },
   );
-  
+
   t.deepEqual(
     [...allFiles.keys()].sort(),
     ['post1', 'post2', 'post3', 'random', 'something'].sort(),
@@ -168,20 +168,20 @@ const locals = {
 
 test('minifyHtml', async (t) => {
   const result = await readFile([templatePath, 'html/index.html'], minifyHtml);
-  
+
   t.is(`${result}\n`, await minifiedHtml);
 });
 
 
 test('renderJstl', async (t) => {
   const result = await readFile([templatePath, 'jstl/index.jstl'], renderJstl(locals));
-  
+
   t.is(`${result}\n`, await minifiedHtml);
 });
 
 
 test('renderPug', async (t) => {
   const result = await readFile([templatePath, 'pug/index.pug'], renderPug(locals));
-  
+
   t.is(`${result}\n`, await minifiedHtml);
 });

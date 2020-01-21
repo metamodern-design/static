@@ -8,13 +8,13 @@ import index from '../index';
 const example = path.resolve(__dirname, 'example');
 
 
-test.after(async (t) => {
+test.after(async () => {
   await del(path.resolve(example, 'dist*'));
 });
 
 
 test('build script generated the public files', async (t) => {
-  const built = await index(example, {
+  await index(example, {
     dist: 'dist1',
   });
 
@@ -29,7 +29,7 @@ test('build script generated the public files', async (t) => {
 
 
 test('skipHtml option', async (t) => {
-  const built = await index(example, {
+  await index(example, {
     skipHtml: true,
     dist: 'dist2',
   });

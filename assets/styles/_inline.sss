@@ -1,17 +1,25 @@
 /* THEME */
 
 a:not(.unstyled)
-  @apply text-h240-s70-l47
+  @apply text-medium-blue
+
+.text-white a:not(.unstyled),
+.text-lighter a:not(.unstyled)
+  @apply text-bright-green
 
 a:visited:not(.unstyled)
-  @apply text-h270-s70-l47
+  @apply text-medium-purple
 
 code
   @apply bg-transparent
-  @apply text-h0-s70-l47
-
-pre
-  @apply bg-gray-82
+  @apply font-source-code
   
 strong
   @apply font-semibold
+
+
+/* DISPLAY FIX FOR ICONS AND TAGS */
+
+p img,
+span img
+  @apply inline

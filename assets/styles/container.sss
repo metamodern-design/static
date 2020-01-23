@@ -1,14 +1,17 @@
+/* A FLEX CONTAINER WITH GENEROUS MARGINS AND OPTIONAL ALIGNMENT */
 /* REPLACES TAILWIND'S RESPONSIVE CONTAINER */
 
 .container
   @apply w-full
   @apply max-w-10c
 
+.container:not(.align-left)
+  @apply mx-auto
 
-@screen c18
+.container.align-right
+  @apply ml-auto
+
+
+@screen c17
   .container
     @apply max-w-15c
-
-@screen c25
-  .container
-    @apply max-w-20c

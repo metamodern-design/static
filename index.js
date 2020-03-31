@@ -20,20 +20,21 @@ const index = async (
           ? []
           : await buildHtml(context, options)
       );
+      
+      const jsOut = await buildJs(context, {
+        ...options,
+        ...rollup,
+      });
 
       const assetsOut = await Promise.all([
         buildCss(context, {
           ...options,
           ...postcss,
         }),
-        buildJs(context, {
-          ...options,
-          ...rollup,
-        }),
         copyAssets(context, options),
       ]);
 
-      return flatten([htmlOut, assetsOut]);
+      return flatten([htmlOut, jsOut, assetsOut]);
     },
     (err) => `Build failed: ${err}`,
   );

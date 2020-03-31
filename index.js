@@ -20,7 +20,7 @@ const index = async (
           ? []
           : await buildHtml(context, options)
       );
-      
+
       const jsOut = await buildJs(context, {
         ...options,
         ...rollup,

@@ -1,6 +1,6 @@
 const browserslistConfig = [
-  '> 1% in US',
-  'last 1 version',
+  '> 1.5% in US',
+  'Firefox ESR',
   'not dead',
 ];
 

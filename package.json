@@ -35,7 +35,6 @@
     "@babel/preset-env": "^7.9.0",
     "@fullhuman/postcss-purgecss": "^2.1.0",
     "@iarna/toml": "^2.2.3",
-    "@metamodern/design-system": "^2.0.0",
     "camelcase": "^5.3.1",
     "clean-stack": "^2.2.0",
     "core-js": "^3.6.4",
@@ -62,6 +61,7 @@
     "yaml": "^1.8.3"
   },
   "devDependencies": {
+    "@metamodern/design-system": "^2.0.0",
     "ava": "^2.4.0",
     "del": "^5.1.0",
     "del-cli": "^3.0.0",

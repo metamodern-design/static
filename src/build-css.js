@@ -25,7 +25,7 @@ const buildCss = async (context, {
   includeDefaultPlugins = true,
   includeFullPalette = false,
   designSystemConfig = { includeFullPalette },
-  tailwindConfig = designSystem(designSystemConfig),
+  tailwindConfig = { separator: '_', ...designSystem(designSystemConfig) },
   targetBrowsers = browserslistConfig.join(', '),
   usePurge = false,
 } = {}) => {

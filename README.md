@@ -1,5 +1,4 @@
 # @metamodern/static
-Build a next-gen static site with pre-rendered markup and bundled/minified assets
+**[Deprecated] Build a next-gen static site with pre-rendered markup and bundled/minified assets**
 
-
-Current version is for test purposes only. Documentation will be published with a later release.
+> **Deprecation Warning**: *This experimental library is no longer in active development and will not be updated in response to Node.js version  releases or security vulnerabilities identified in the dependency tree.* 
